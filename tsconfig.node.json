@@ -6,5 +6,5 @@
     "strict": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "api", "server"]
+  "include": ["vite.config.ts", "vite.dev.config.ts", "api", "server"]
 }

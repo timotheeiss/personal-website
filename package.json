@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --config vite.dev.config.ts",
     "build": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build",
     "knowledge:upload": "node --env-file=.env.local scripts/upload-knowledge.mjs",
     "test": "vitest run",
@@ -25,10 +25,10 @@
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
-    "@vitejs/plugin-react": "^6.0.4",
+    "@vitejs/plugin-react": "5.2.0",
     "jsdom": "^29.1.1",
     "typescript": "^7.0.2",
-    "vite": "^8.1.5",
+    "vite": "7.3.6",
     "vitest": "^4.1.10"
   }
 }
