@@ -1,6 +1,7 @@
 :root {
+  --page-background: #ffffff;
   color: #151515;
-  background: #ffffff;
+  background: var(--page-background);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -11,6 +12,8 @@
 }
 
 html {
+  min-height: 100%;
+  background: var(--page-background);
   scroll-behavior: smooth;
 }
 
@@ -18,6 +21,12 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  background: var(--page-background);
+}
+
+#root {
+  min-height: 100vh;
+  background: var(--page-background);
 }
 
 button,

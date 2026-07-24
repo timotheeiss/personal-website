@@ -1,4 +1,4 @@
-import { useState, type CSSProperties } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import LogoGithub from '@gravity-ui/icons/LogoGithub'
 import LogoLinkedin from '@gravity-ui/icons/LogoLinkedin'
 import { PaintCanvas } from './components/PaintCanvas'
@@ -92,6 +92,14 @@ export default function App() {
   const { preferences, setPreferences, resolved } = useThemePreferences()
   const [paintEnabled, setPaintEnabled] = useState(false)
   const [brushSize, setBrushSize] = useState(24)
+
+  useEffect(() => {
+    document.documentElement.style.setProperty('--page-background', resolved.background.value)
+    return () => {
+      document.documentElement.style.removeProperty('--page-background')
+    }
+  }, [resolved.background.value])
+
   const themeStyles = {
     '--page-background': resolved.background.value,
     '--accent': resolved.accent.value,
