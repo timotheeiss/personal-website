@@ -34,8 +34,8 @@ project spend limit and consider durable rate limiting or bot protection.
 
 ## Knowledge base
 
-For the current small profile, `knowledge/timothee.md` is included directly in the assistant context.
-Keep that file factual, public, and organised with clear headings. Add separate Markdown, text, PDF, or
+For the current small profile, `server/profile-context.ts` is bundled directly with the assistant.
+Keep it in sync with the public facts in `knowledge/timothee.md`. Add separate Markdown, text, PDF, or
 Word files to `knowledge/` as the material grows—for example `projects.md`, `experience.md`, and a
 public résumé. Do not add private contact details or anything you would not publish on the website.
 

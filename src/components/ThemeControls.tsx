@@ -7,7 +7,7 @@ import VolumeSlash from '@gravity-ui/icons/VolumeSlash'
 import { themeOptions } from '../data/themeOptions'
 import type { ThemePreferences } from '../types/theme'
 
-type OpenControl = 'background' | 'accent' | 'font' | 'paint' | null
+type OpenControl = 'background' | 'accent' | 'font' | 'paint' | 'music' | null
 
 interface ThemeControlsProps {
   preferences: ThemePreferences
@@ -73,15 +73,18 @@ export function ThemeControls({
 }: ThemeControlsProps) {
   const [openControl, setOpenControl] = useState<OpenControl>(null)
   const [musicOn, setMusicOn] = useState(false)
+  const [musicVolume, setMusicVolume] = useState(30)
   const railRef = useRef<HTMLElement>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (audio) audio.volume = 0.3
-
-    return () => audio?.pause()
+    return () => audioRef.current?.pause()
   }, [])
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (audio) audio.volume = musicVolume / 100
+  }, [musicVolume])
 
   useEffect(() => {
     const handlePointerDown = (event: PointerEvent) => {
@@ -110,11 +113,16 @@ export function ThemeControls({
     if (musicOn) {
       audio.pause()
       setMusicOn(false)
+      setOpenControl(null)
       return
     }
 
+    setOpenControl('music')
     setMusicOn(true)
-    audio.play()?.catch(() => setMusicOn(false))
+    audio.play()?.catch(() => {
+      setMusicOn(false)
+      setOpenControl(null)
+    })
   }
 
   const fontIndex = Math.max(
@@ -248,22 +256,44 @@ export function ThemeControls({
           </div>
         )}
       </div>
-      <button
-        className="control-button control-button--rail-action"
-        type="button"
-        aria-label={`Music ${musicOn ? 'on' : 'off'}`}
-        aria-pressed={musicOn}
-        onClick={toggleMusic}
-      >
-        <span className="control-label">Music <small>{musicOn ? 'on' : 'off'}</small></span>
-        <span className="control-icon">
-          {musicOn ? (
-            <Volume width={20} height={20} aria-hidden="true" />
-          ) : (
-            <VolumeSlash width={20} height={20} aria-hidden="true" />
-          )}
-        </span>
-      </button>
+      <div className="control-item control-item--music">
+        <button
+          className="control-button control-button--rail-action"
+          type="button"
+          aria-label={`Music ${musicOn ? 'on' : 'off'}`}
+          aria-pressed={musicOn}
+          aria-expanded={openControl === 'music'}
+          aria-controls="music-options"
+          onClick={toggleMusic}
+        >
+          <span className="control-label">Music <small>{musicOn ? 'on' : 'off'}</small></span>
+          <span className="control-icon">
+            {musicOn ? (
+              <Volume width={20} height={20} aria-hidden="true" />
+            ) : (
+              <VolumeSlash width={20} height={20} aria-hidden="true" />
+            )}
+          </span>
+        </button>
+        {openControl === 'music' && (
+          <div className="control-popover music-options" id="music-options">
+            <label htmlFor="music-volume-slider">
+              Volume <output>{musicVolume}%</output>
+            </label>
+            <input
+              id="music-volume-slider"
+              type="range"
+              min="0"
+              max="100"
+              step="1"
+              value={musicVolume}
+              aria-label="Music volume"
+              aria-valuetext={`${musicVolume}%`}
+              onChange={(event) => setMusicVolume(Number(event.target.value))}
+            />
+          </div>
+        )}
+      </div>
       <ComingSoonControl label="Pet"><FaceAlien width={20} height={20} aria-hidden="true" /></ComingSoonControl>
     </aside>
   )

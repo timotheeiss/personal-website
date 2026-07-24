@@ -1,5 +1,5 @@
-import { readFileSync } from 'node:fs'
 import OpenAI from 'openai'
+import { profileContext } from './profile-context'
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
@@ -12,11 +12,6 @@ interface ChatOptions {
   model?: string
   vectorStoreId?: string
 }
-
-const profileContext = readFileSync(
-  new URL('../knowledge/timothee.md', import.meta.url),
-  'utf8',
-)
 
 export const portfolioAssistantInstructions = `
 You are the portfolio assistant for Timothee Issenmann.

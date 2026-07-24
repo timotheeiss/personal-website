@@ -1,4 +1,5 @@
 import { useState, type CSSProperties } from 'react'
+import LogoGithub from '@gravity-ui/icons/LogoGithub'
 import LogoLinkedin from '@gravity-ui/icons/LogoLinkedin'
 import { PaintCanvas } from './components/PaintCanvas'
 import { Project } from './components/Project'
@@ -123,15 +124,26 @@ export default function App() {
             />
             <div className="profile-name-row">
               <h1>Timothee Issenmann</h1>
-              <a
-                className="profile-social-link"
-                href="https://linkedin.com/in/timothee-issenmann"
-                target="_blank"
-                rel="noreferrer"
-                aria-label="Timothee Issenmann on LinkedIn (opens in a new tab)"
-              >
-                <LogoLinkedin width={17} height={17} aria-hidden="true" />
-              </a>
+              <div className="profile-social-links">
+                <a
+                  className="profile-social-link"
+                  href="https://linkedin.com/in/timothee-issenmann"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Timothee Issenmann on LinkedIn (opens in a new tab)"
+                >
+                  <LogoLinkedin width={17} height={17} aria-hidden="true" />
+                </a>
+                <a
+                  className="profile-social-link"
+                  href="https://github.com/timotheeiss"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="Timothee Issenmann on GitHub (opens in a new tab)"
+                >
+                  <LogoGithub width={17} height={17} aria-hidden="true" />
+                </a>
+              </div>
             </div>
             <p className="profile-subtitle">Product Engineer & Founder · Relocating to San Francisco</p>
             <p className="profile-introduction">
