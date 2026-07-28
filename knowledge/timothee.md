@@ -49,6 +49,7 @@ Tim's strongest qualities are:
 
 - End-to-end ownership: he can move from identifying a user problem to product decisions, design, implementation, launch, feedback, growth, monetization, and operations.
 - Product judgment and taste: Newgrain shows that he can make intentional product choices instead of blindly copying established patterns.
+- Attention to detail and craft: he cares about the small visual, interaction, and content decisions that make a product feel coherent and polished. Newgrain reflects this care in its calm interface, photography presentation, structured analog metadata, and overall product experience.
 - User empathy: he has conducted more than 100 user interviews and is comfortable discovering needs from both consumers and internal business users.
 - High agency and resourcefulness: when he sees a useful outcome, he finds a path through technical, institutional, operational, or distribution constraints.
 - Speed in ambiguity: he is comfortable starting with incomplete information, prototyping, learning from users, and iterating.
