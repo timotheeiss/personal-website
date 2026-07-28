@@ -155,9 +155,9 @@ export default function App() {
             </div>
             <p className="profile-subtitle">Product Engineer & Founder · Relocating to San Francisco</p>
             <p className="profile-introduction">
-              I've shipped products from zero to 10k+ users, owning everything from design to code. I’m
-              graduating from my CS Master’s in September 2026 and looking for product engineering roles at
-              early-stage startups in San Francisco.
+              I've shipped products from zero to 10k+ users, owning everything from design, engineering, and
+              growth. I love helping users and crafting great products. I’m graduating from my CS Master’s in
+              September 2026 and looking to join an early-stage startup in San Francisco from autumn 2026.
             </p>
           </header>
 
