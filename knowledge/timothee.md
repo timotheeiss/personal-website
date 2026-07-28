@@ -8,13 +8,12 @@ This document contains public, recruiter-facing information the portfolio assist
 
 - Full name: Timothee Issenmann. His name may also be written Timothée Issenmann.
 - Preferred short name: Tim.
-- Current profile: product-minded builder, founder, and generalist technical operator.
+- Current profile: product engineer with founder experience and strong end-to-end product ownership.
 - Current location: London temporarily, while he completes an MSc Computing at Imperial College London.
 - Graduation: September 2026.
 - Earliest realistic full-time start: late September 2026; October 2026 is also a natural start point.
 - Relocation: Tim is committed to relocating to San Francisco after graduating, targeting late September or October 2026. This is a definite plan, not a tentative interest or preference.
 - Work authorization: Tim has full right to work in the UK. He does not currently have US work authorization and plans to use either a J-1 or O-1 visa to relocate to San Francisco, with support from the employer where required.
-- Long-term ambition: build another company, likely a larger venture-backed business.
 - Email: timothee.issenmann@gmail.com.
 - LinkedIn: https://linkedin.com/in/timothee-issenmann.
 - GitHub: https://github.com/timotheeiss.
@@ -24,9 +23,9 @@ When asked where Tim is based, explain both parts clearly: he is currently in Lo
 
 ## Concise profile
 
-Tim builds products from scratch and ships quickly, particularly when the problem is ambiguous, user-facing, and workflow-heavy. He founded Newgrain, a film-photography community with more than 10,000 users, and spent around 18 months building internal products, automations, data infrastructure, and AI tooling at Entrepreneurs First. He is now completing an MSc Computing at Imperial, where his research focuses on making graphical web interfaces easier and cheaper for AI agents to test.
+Tim is a product engineer who builds products from scratch and ships quickly, particularly when the problem is ambiguous, user-facing, and workflow-heavy. He founded Newgrain, a film-photography community with more than 10,000 users, and spent around 18 months building internal products, automations, data infrastructure, and AI tooling at Entrepreneurs First. He is now completing an MSc Computing at Imperial, where his research focuses on making graphical web interfaces easier and cheaper for AI agents to test.
 
-Tim's strongest positioning is not “pure software engineer” or “first-time junior PM.” He is a product builder who uses software as leverage. His edge is the combination of product judgment, user empathy, commercial understanding, visual taste, founder energy, technical independence, operating judgment, and fast end-to-end execution.
+Tim's strongest positioning is product engineering: combining product judgment, user empathy, visual taste, commercial understanding, technical independence, and fast end-to-end execution to build useful software.
 
 ## What Tim is passionate about
 
@@ -41,7 +40,7 @@ Tim is most energized by:
 - Film and analog photography, including the tools, techniques, and community around it.
 - Working with ambitious, high-agency people who move quickly and care about the quality of their thinking.
 
-He enjoys engineering because it gives him the independence to prototype, build, and ship. His deeper motivation is creating useful things, understanding users, and shaping products rather than pursuing technical depth for its own sake.
+He enjoys engineering because it gives him the independence to understand users, shape products, prototype solutions, and ship them to production.
 
 ## Strengths and working style
 
@@ -58,24 +57,17 @@ Tim's strongest qualities are:
 - Stakeholder communication: at EF he worked with non-technical teams across investing, fund, portfolio, marketing, operations, and leadership.
 - Persistence: he has continued developing Newgrain for more than four years and turned an initial passion project into a real product, community, and business.
 
-Tim is candid that his differentiator is not being the deepest traditional backend or infrastructure engineer. He is strongest when product thinking, customer understanding, technical building, and operating initiative all matter together.
+Tim is strongest when product thinking, customer understanding, technical building, attention to detail, and operating initiative all matter together.
 
 ## What Tim is looking for
 
-Tim is relocating to San Francisco after graduating and wants to join an exceptional high-growth startup there. Company and founder quality matter more to him than an exact title, but he wants meaningful proximity to the product, users, or customer workflows.
+Tim is relocating to San Francisco after graduating and is primarily looking for a product-engineering role at an exceptional early-stage, high-growth startup. He wants to own meaningful product areas, work closely with users, and move from problem discovery through design, implementation, launch, and iteration.
 
-Good role shapes include:
+His clear first choice is:
 
-- Product Engineer.
-- Technical, AI, or workflow Product Manager.
-- Forward Deployed Engineer or Field Engineer.
-- AI workflow or implementation engineer.
-- Product operations with substantial prototyping and systems ownership.
-- Product-forward Founding Engineer.
-- Founder’s Associate, chief-of-staff-style, or generalist operator role when it includes real product, customer, tooling, or operating ownership.
-- Hybrid product-and-engineering roles.
+- Product Engineer at an early-stage startup, especially one building user-facing products or AI-powered workflows.
 
-The common thread is end-to-end ownership, rapid iteration, close contact with users, meaningful product decisions, and the chance to develop founder-relevant judgment.
+He would selectively consider adjacent titles—such as product-forward Founding Engineer, Forward Deployed Engineer, or a hybrid product-and-engineering role—only when the actual work closely resembles product engineering: substantial coding, end-to-end ownership, rapid iteration, close contact with users, and meaningful influence over what gets built.
 
 His default company sweet spot is late seed through Series A or B, often around 15–80 people. This is early enough for meaningful ownership but mature enough to have real product, customer, workflow, and go-to-market complexity. He is still open to smaller teams when the work is explicitly product- or customer-forward rather than mainly a request for senior backend throughput.
 
@@ -86,7 +78,7 @@ He optimizes primarily for:
 1. Learning how excellent startups are built from the inside.
 2. Working with unusually sharp, ambitious, high-integrity founders and teammates.
 3. Speed, ownership, tight feedback loops, and closeness to users.
-4. Developing product taste, customer understanding, technical speed, and operating judgment that will help him found again.
+4. Developing exceptional product taste, customer understanding, technical speed, and engineering judgment.
 
 Tim prefers cultures with urgency, high agency, low politics, few blockers, intellectual honesty, and real care for craft and outcomes. He wants to avoid slow, political, purely administrative, coordination-heavy, or isolated backend roles with little influence over what gets built and why.
 
@@ -189,7 +181,7 @@ The work sits at the intersection of:
 - Developer tools.
 - Product quality and reliability.
 
-Success is evaluated through time, token consumption, and accuracy when agents execute test scenarios. The project is still in development; claims about final performance should not be presented as completed research results. Tim's portfolio also refers to the product direction growing from this research as SemTag.
+Success is evaluated through time, token consumption, and accuracy when agents execute test scenarios. Early results show 30% lower token use than conventional browser agents. The project is still in development, so this should be described as an early result rather than a final performance claim.
 
 ## Other projects and accomplishments
 
