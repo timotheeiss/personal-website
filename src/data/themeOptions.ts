@@ -2,18 +2,20 @@ import type { ThemeOption, ThemePreferences } from '../types/theme'
 
 export const themeOptions: ThemeOption = {
   backgrounds: [
-    { id: 'paper', name: 'Paper', value: '#ffffff' },
-    { id: 'bone', name: 'Bone', value: '#f6f1e8' },
-    { id: 'mist', name: 'Mist', value: '#eef4f8' },
-    { id: 'sage', name: 'Sage', value: '#edf3ec' },
-    { id: 'blush', name: 'Blush', value: '#f7eeee' },
+    { id: 'white', name: 'White', value: '#ffffff' },
+    { id: 'cotton-candy', name: 'Cotton Candy', value: '#fff0f6' },
+    { id: 'peach-cream', name: 'Peach Cream', value: '#fff3e8' },
+    { id: 'lilac-milk', name: 'Lilac Milk', value: '#f5f0ff' },
+    { id: 'blue-frost', name: 'Blue Frost', value: '#edf4ff' },
+    { id: 'mint-soda', name: 'Mint Soda', value: '#eafbf7' },
   ],
   accents: [
-    { id: 'ink', name: 'Ink', value: '#151515' },
-    { id: 'cobalt', name: 'Cobalt', value: '#2450c7' },
-    { id: 'clay', name: 'Clay', value: '#a43d28' },
-    { id: 'moss', name: 'Moss', value: '#355e42' },
-    { id: 'plum', name: 'Plum', value: '#673d66' },
+    { id: 'black', name: 'Black', value: '#151515' },
+    { id: 'raspberry', name: 'Raspberry', value: '#c2185b' },
+    { id: 'tangerine', name: 'Tangerine', value: '#b93800' },
+    { id: 'grape', name: 'Grape', value: '#6d28d9' },
+    { id: 'electric-blue', name: 'Electric Blue', value: '#1d4ed8' },
+    { id: 'teal', name: 'Teal', value: '#00766c' },
   ],
   fonts: [
     {
@@ -44,7 +46,7 @@ export const themeOptions: ThemeOption = {
 }
 
 export const defaultThemePreferences: ThemePreferences = {
-  backgroundId: 'paper',
-  accentId: 'ink',
+  backgroundId: 'white',
+  accentId: 'black',
   fontId: 'modern',
 }

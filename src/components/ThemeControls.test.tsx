@@ -47,10 +47,10 @@ describe('ThemeControls', () => {
     render(<Harness />)
     expect(screen.getByRole('button', { name: 'Pet, coming soon' })).toHaveAttribute('aria-disabled', 'true')
 
-    const paintButton = screen.getByRole('button', { name: 'Paint off' })
+    const paintButton = screen.getByRole('button', { name: 'Doodle off' })
     expect(paintButton).toHaveAttribute('aria-pressed', 'false')
     fireEvent.click(paintButton)
-    expect(screen.getByRole('button', { name: 'Paint on' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'Doodle on' })).toHaveAttribute('aria-pressed', 'true')
     const thicknessSlider = screen.getByRole('slider', { name: 'Brush thickness' })
     expect(thicknessSlider).toHaveValue('24')
     fireEvent.change(thicknessSlider, { target: { value: '40' } })

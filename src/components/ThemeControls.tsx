@@ -63,6 +63,55 @@ function ComingSoonControl({ label, children }: ComingSoonControlProps) {
   )
 }
 
+interface ThickSliderProps {
+  id: string
+  label: string
+  valueText: string
+  ariaLabel?: string
+  ariaValueText?: string
+  min: number
+  max: number
+  step: number
+  value: number
+  onChange: (value: number) => void
+}
+
+function ThickSlider({
+  id,
+  label,
+  valueText,
+  ariaLabel,
+  ariaValueText,
+  min,
+  max,
+  step,
+  value,
+  onChange,
+}: ThickSliderProps) {
+  const progress = ((value - min) / (max - min)) * 100
+
+  return (
+    <div
+      className="thick-slider"
+      style={{ '--slider-progress': `${progress}%` } as React.CSSProperties}
+    >
+      <label htmlFor={id}>{label}</label>
+      <output>{valueText}</output>
+      <input
+        id={id}
+        type="range"
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        aria-label={ariaLabel}
+        aria-valuetext={ariaValueText ?? valueText}
+        onChange={(event) => onChange(Number(event.target.value))}
+      />
+    </div>
+  )
+}
+
 export function ThemeControls({
   preferences,
   setPreferences,
@@ -198,23 +247,19 @@ export function ThemeControls({
         </ControlButton>
         {openControl === 'font' && (
           <div className="control-popover font-options" id="font-options">
-            <label htmlFor="font-slider">{themeOptions.fonts[fontIndex].name}</label>
-            <input
+            <ThickSlider
               id="font-slider"
-              type="range"
-              min="0"
+              label="Font"
+              valueText={themeOptions.fonts[fontIndex].name}
+              min={0}
               max={themeOptions.fonts.length - 1}
-              step="1"
+              step={1}
               value={fontIndex}
-              aria-valuetext={themeOptions.fonts[fontIndex].name}
-              onChange={(event) => {
-                const font = themeOptions.fonts[Number(event.target.value)]
+              onChange={(value) => {
+                const font = themeOptions.fonts[value]
                 setPreferences((current) => ({ ...current, fontId: font.id }))
               }}
             />
-            <div className="font-stops" aria-hidden="true">
-              {themeOptions.fonts.map((font) => <i key={font.id} />)}
-            </div>
           </div>
         )}
       </div>
@@ -223,7 +268,7 @@ export function ThemeControls({
         <button
           className="control-button control-button--paint"
           type="button"
-          aria-label={`Paint ${paintEnabled ? 'on' : 'off'}`}
+          aria-label={`Doodle ${paintEnabled ? 'on' : 'off'}`}
           aria-pressed={paintEnabled}
           aria-expanded={openControl === 'paint'}
           aria-controls="paint-options"
@@ -232,26 +277,23 @@ export function ThemeControls({
             onPaintEnabledChange(!paintEnabled)
           }}
         >
-          <span className="control-label">Paint <small>{paintEnabled ? 'on' : 'off'}</small></span>
+          <span className="control-label">Doodle <small>{paintEnabled ? 'on' : 'off'}</small></span>
           <span className="control-icon">
             <Pencil width={20} height={20} aria-hidden="true" />
           </span>
         </button>
         {openControl === 'paint' && (
           <div className="control-popover paint-options" id="paint-options">
-            <label htmlFor="paint-size-slider">
-              Brush size <output>{brushSize}px</output>
-            </label>
-            <input
+            <ThickSlider
               id="paint-size-slider"
-              type="range"
-              min="8"
-              max="160"
-              step="4"
+              label="Brush size"
+              valueText={`${brushSize}px`}
+              ariaLabel="Brush thickness"
+              min={8}
+              max={160}
+              step={4}
               value={brushSize}
-              aria-label="Brush thickness"
-              aria-valuetext={`${brushSize}px`}
-              onChange={(event) => onBrushSizeChange(Number(event.target.value))}
+              onChange={onBrushSizeChange}
             />
           </div>
         )}
@@ -277,19 +319,16 @@ export function ThemeControls({
         </button>
         {openControl === 'music' && (
           <div className="control-popover music-options" id="music-options">
-            <label htmlFor="music-volume-slider">
-              Volume <output>{musicVolume}%</output>
-            </label>
-            <input
+            <ThickSlider
               id="music-volume-slider"
-              type="range"
-              min="0"
-              max="100"
-              step="1"
+              label="Volume"
+              valueText={`${musicVolume}%`}
+              ariaLabel="Music volume"
+              min={0}
+              max={100}
+              step={1}
               value={musicVolume}
-              aria-label="Music volume"
-              aria-valuetext={`${musicVolume}%`}
-              onChange={(event) => setMusicVolume(Number(event.target.value))}
+              onChange={setMusicVolume}
             />
           </div>
         )}

@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "vite --config vite.dev.config.ts",
     "build": "tsc --noEmit -p tsconfig.app.json && tsc --noEmit -p tsconfig.node.json && vite build",
-    "knowledge:upload": "node --env-file=.env.local scripts/upload-knowledge.mjs",
     "test": "vitest run",
     "test:watch": "vitest"
   },

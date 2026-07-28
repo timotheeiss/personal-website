@@ -12,10 +12,10 @@ describe('theme preferences', () => {
   it('validates individual saved options', () => {
     window.localStorage.setItem(
       THEME_STORAGE_KEY,
-      JSON.stringify({ backgroundId: 'sage', accentId: 'unknown', fontId: 'mono' }),
+      JSON.stringify({ backgroundId: 'mint-soda', accentId: 'unknown', fontId: 'mono' }),
     )
     expect(readStoredTheme()).toEqual({
-      backgroundId: 'sage',
+      backgroundId: 'mint-soda',
       accentId: defaultThemePreferences.accentId,
       fontId: 'mono',
     })
@@ -23,10 +23,10 @@ describe('theme preferences', () => {
 
   it('persists a changed theme', () => {
     const { result } = renderHook(() => useThemePreferences())
-    act(() => result.current.setPreferences((current) => ({ ...current, backgroundId: 'mist' })))
+    act(() => result.current.setPreferences((current) => ({ ...current, backgroundId: 'blue-frost' })))
 
     expect(JSON.parse(window.localStorage.getItem(THEME_STORAGE_KEY) ?? '{}')).toMatchObject({
-      backgroundId: 'mist',
+      backgroundId: 'blue-frost',
     })
   })
 })

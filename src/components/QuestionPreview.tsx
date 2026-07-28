@@ -1,4 +1,5 @@
 import { useState, type FormEvent } from 'react'
+import ArrowUp from '@gravity-ui/icons/ArrowUp'
 
 interface ChatMessage {
   role: 'user' | 'assistant'
@@ -51,11 +52,7 @@ export function QuestionPreview() {
   }
 
   return (
-    <section className="question-preview" aria-labelledby="questions-heading">
-      <div className="section-heading-row">
-        <h2 id="questions-heading">Ask questions about me</h2>
-      </div>
-
+    <section className="question-preview" aria-label="Ask questions about Timothee">
       {messages.length === 0 && (
         <div className="question-suggestions" aria-label="Suggested questions">
           {suggestions.map((suggestion) => (
@@ -77,24 +74,26 @@ export function QuestionPreview() {
         </div>
       )}
 
-      <form className="question-form" onSubmit={handleSubmit}>
-        <label className="visually-hidden" htmlFor="portfolio-question">Ask a question about Timothee</label>
-        <input
-          id="portfolio-question"
-          type="text"
-          value={question}
-          maxLength={500}
-          autoComplete="off"
-          placeholder="Ask something about Tim…"
-          disabled={isLoading}
-          onChange={(event) => setQuestion(event.target.value)}
-        />
-        <button type="submit" disabled={!question.trim() || isLoading} aria-label="Send question">
-          <span aria-hidden="true">↗</span>
-        </button>
-      </form>
+      <div className="question-form-dock">
+        <form className="question-form" onSubmit={handleSubmit}>
+          <label className="visually-hidden" htmlFor="portfolio-question">Ask a question about Timothee</label>
+          <input
+            id="portfolio-question"
+            type="text"
+            value={question}
+            maxLength={500}
+            autoComplete="off"
+            placeholder="Ask something about Tim…"
+            disabled={isLoading}
+            onChange={(event) => setQuestion(event.target.value)}
+          />
+          <button type="submit" disabled={!question.trim() || isLoading} aria-label="Send question">
+            <ArrowUp width={15} height={15} aria-hidden="true" />
+          </button>
+        </form>
 
-      {error && <p className="question-error" role="alert">{error}</p>}
+        {error && <p className="question-error" role="alert">{error}</p>}
+      </div>
     </section>
   )
 }

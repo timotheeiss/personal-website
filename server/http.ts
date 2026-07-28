@@ -4,7 +4,6 @@ import { createChatReply, parseChatMessages } from './chat'
 interface ChatEnvironment {
   OPENAI_API_KEY?: string
   OPENAI_MODEL?: string
-  OPENAI_VECTOR_STORE_ID?: string
 }
 
 type RequestWithBody = IncomingMessage & { body?: unknown }
@@ -78,7 +77,6 @@ export async function handleChatRequest(
       apiKey,
       messages,
       model: environment.OPENAI_MODEL,
-      vectorStoreId: environment.OPENAI_VECTOR_STORE_ID,
     })
     sendJson(response, 200, { reply })
   } catch (error) {

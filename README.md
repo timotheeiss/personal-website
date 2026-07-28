@@ -34,22 +34,9 @@ project spend limit and consider durable rate limiting or bot protection.
 
 ## Knowledge base
 
-For the current small profile, `server/profile-context.ts` is bundled directly with the assistant.
-Keep it in sync with the public facts in `knowledge/timothee.md`. Add separate Markdown, text, PDF, or
-Word files to `knowledge/` as the material grows—for example `projects.md`, `experience.md`, and a
-public résumé. Do not add private contact details or anything you would not publish on the website.
+`knowledge/timothee.md` is the single source of truth for the assistant. The server reads the complete
+file when it starts and includes the full text in the instructions sent with every OpenAI request.
+There is no vector store, embedding, retrieval, or separate compact profile.
 
-To turn those files into a searchable OpenAI knowledge base:
-
-```sh
-npm run knowledge:upload
-```
-
-The command creates an OpenAI vector store, uploads every supported file in `knowledge/`, waits for
-indexing, and prints a `vs_...` ID. Copy that value into `OPENAI_VECTOR_STORE_ID` in `.env.local` and
-your deployment settings, then restart the app. The server will automatically enable OpenAI file
-search for each answer.
-
-When documents change, upload the updated set to a fresh vector store and replace the environment
-variable. This avoids stale or duplicate chunks; delete the old store in the OpenAI dashboard once
-you have verified the new one.
+Keep the document factual and public. After editing it, restart the local development server or
+redeploy the website so the server loads the updated contents.
