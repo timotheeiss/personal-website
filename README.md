@@ -41,3 +41,18 @@ There is no vector store, embedding, retrieval, or separate compact profile.
 
 Keep the document factual and public. After editing it, restart the local development server or
 redeploy the website so the server loads the updated contents.
+
+## Contact form
+
+The contact modal sends messages through the server-side `/api/contact` endpoint. To configure it:
+
+1. Add and verify `timissenmann.com` in Resend.
+2. Create a sending-only Resend API key.
+3. Set `RESEND_API_KEY`, `CONTACT_FROM_EMAIL`, and `CONTACT_TO_EMAIL` in `.env.local` and in the
+   deployment environment.
+4. Restart the development server or redeploy after changing the variables.
+
+The default sender is `Timothee Portfolio <contact@timissenmann.com>`. Messages are delivered to
+`timothee.issenmann@gmail.com`, with the visitor's address set as `reply-to` so replies from the inbox
+go directly to them. The endpoint validates input, includes a honeypot, and applies a basic per-IP
+rate limit.

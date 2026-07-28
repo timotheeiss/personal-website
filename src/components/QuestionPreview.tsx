@@ -193,7 +193,7 @@ export function QuestionPreview() {
             maxLength={500}
             autoComplete="off"
             autoFocus
-            placeholder="Ask something about Tim…"
+            placeholder="Ask something about me..."
             disabled={isLoading}
             onChange={(event) => setQuestion(event.target.value)}
           />

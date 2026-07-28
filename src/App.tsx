@@ -1,6 +1,7 @@
 import { useEffect, useState, type CSSProperties } from 'react'
 import LogoGithub from '@gravity-ui/icons/LogoGithub'
 import LogoLinkedin from '@gravity-ui/icons/LogoLinkedin'
+import { ContactForm } from './components/ContactForm'
 import { PaintCanvas } from './components/PaintCanvas'
 import { Project } from './components/Project'
 import { QuestionPreview } from './components/QuestionPreview'
@@ -178,11 +179,7 @@ export default function App() {
 
           <section className="content-section contact-section" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact</h2>
-            <p>
-              I’m looking for product-engineering roles at ambitious early-stage startups in San Francisco,
-              starting autumn 2026. If you think I could be useful to your team, email me at{' '}
-              <a href="mailto:timothee.issenmann@gmail.com">timothee.issenmann@gmail.com</a>.
-            </p>
+            <ContactForm />
           </section>
 
           <QuestionPreview />
