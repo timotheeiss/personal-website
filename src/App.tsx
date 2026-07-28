@@ -64,14 +64,14 @@ const experience = [
   {
     title: 'Newgrain',
     role: 'Founder',
-    date: '2022–present',
+    date: '2022 – Present',
     description:
       'Founded and built a consumer startup based in the UK, led a team of four, and secured funding from LSE Generate and Sterling Road.',
   },
   {
     title: 'Entrepreneurs First',
     role: 'Data & Tech Analyst',
-    date: 'Feb 2024 – Aug 2025',
+    date: '2024 – 2025',
     description:
       'Built 20+ internal tools and automations across investing, fund, marketing and leadership teams at Europe’s top pre-seed accelerator.',
   },
@@ -81,15 +81,15 @@ const education = [
   {
     title: 'Imperial College London',
     role: 'MSc Computing',
-    date: '2025–2026 (graduating Sep 2026)',
+    date: '2025 – 2026',
     description:
-      'Learned CS fundamentals: programming, low-level systems, algorithms, networks, machine learning. Developed fluency in C++, JS, Python, PyTorch. Currently achieving Distinction-level results (highest UK master’s classification).',
+      'Learned CS fundamentals: programming, low-level systems, algorithms, networks, machine learning. Developed fluency in C++, JS, Python, PyTorch. Currently achieving First Class Honours (highest UK master’s classification).',
   },
   {
-    title: 'London School of Economics (LSE)',
+    title: 'London School of Economics',
     role: 'BSc Management',
-    date: '2020–2024',
-    description: 'Graduated with First Class Honours, ranking in the top 10% of the cohort.',
+    date: '2020 – 2024',
+    description: 'Graduated with First Class Honours.',
   },
 ]
 
