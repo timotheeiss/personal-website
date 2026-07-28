@@ -189,7 +189,7 @@ export async function handleChatRequest(
     const messages = parseChatMessages(body?.messages)
     const reply = await createChatReply(
       apiKey,
-      environment.OPENAI_MODEL || 'gpt-5.6',
+      environment.OPENAI_MODEL || 'gpt-5.6-luna',
       messages,
     )
     sendJson(response, 200, { reply })
