@@ -54,8 +54,24 @@ const projects = [
   {
     name: 'Generating Agent-Testable GUIs',
     category: 'Devtool',
-    description:
-      'AI browser agents are increasingly used for application testing, but their heavy token use makes them expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular browser agents. The research is conducted with CodeSpeak and Andrey Breslav, creator of Kotlin.',
+    description: (
+      <>
+        AI browser agents are increasingly used for application testing, but their heavy token use makes them
+        expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and
+        detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular
+        browser agents. The research is conducted with{' '}
+        <a
+          className="inline-project-link"
+          href="https://codespeak.dev/"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="CodeSpeak (opens in a new tab)"
+        >
+          CodeSpeak
+        </a>{' '}
+        and Andrey Breslav, creator of Kotlin.
+      </>
+    ),
     technologies: ['Python', 'React', 'Agents SDK'],
     variant: 'agent' as const,
   },
