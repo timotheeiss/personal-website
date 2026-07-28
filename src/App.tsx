@@ -179,7 +179,8 @@ export default function App() {
           <section className="content-section contact-section" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact</h2>
             <p>
-              For more information about my work, please contact me at{' '}
+              I’m looking for product-engineering roles at ambitious early-stage startups in San Francisco,
+              starting autumn 2026. If you think I could be useful to your team, email me at{' '}
               <a href="mailto:timothee.issenmann@gmail.com">timothee.issenmann@gmail.com</a>.
             </p>
           </section>
