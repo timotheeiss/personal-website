@@ -10,10 +10,11 @@ import { useThemePreferences } from './hooks/useThemePreferences'
 
 const projects = [
   {
-    name: 'NEWGRAIN',
+    name: 'Newgrain',
     category: 'Consumer',
     description: (
       <>
+        I founded{' '}
         <a
           className="inline-project-link"
           href="https://newgrain.app"
@@ -22,19 +23,19 @@ const projects = [
           aria-label="Newgrain (opens in a new tab)"
         >
           Newgrain
-        </a>{' '}
-        is a film photography platform I’ve been building for over 4 years. I took it from prototype to live
-        product, launched a native iOS app and a web app, and drove growth to 10k+ users. Now with 45k+ posts,{' '}
+        </a>{' '}to create a calmer, purpose-built community for film photographers. Over four years, I took it
+        from a no-code prototype to a native iOS app and web platform, owning product design, engineering,
+        growth, and monetization. I’ve grown it organically to 10k+ users, 45k+ posts, hundreds of paying
+        subscribers, and{' '}
         <a
           className="inline-project-link"
           href="https://apps.apple.com/fr/app/newgrain-film-photo-community/id6444198677"
           target="_blank"
           rel="noreferrer"
-          aria-label="350+ App Store reviews, rated 4.8 stars (opens in a new tab)"
+          aria-label="350+ App Store ratings, rated 4.8 stars (opens in a new tab)"
         >
-          350+ App Store reviews (4.8☆)
+          350+ App Store ratings (4.8☆)
         </a>
-        {', and hundreds of paying subscribers, it is a growing home for the analog photography community.'}
       </>
     ),
     technologies: ['React', 'Swift', 'Firebase', 'AWS'],
@@ -42,18 +43,18 @@ const projects = [
     href: 'https://newgrain.app',
   },
   {
-    name: 'HIVEMIND',
+    name: 'Hivemind',
     category: 'Internal tool',
     description:
-      'Hivemind is an internal semantic search engine I built while working at Entrepreneurs First. It allowed EF investors to discover portfolio teams and founders by typing ideas, industries or technologies in natural language. Launched mid-2025, it was the company’s first ever internal AI tool.',
+      'At Entrepreneurs First, valuable portfolio data and investor judgment were scattered across memos, Slack, and CRM records. I built Hivemind, a semantic search engine that lets investors find relevant teams and founders using natural language. Launched in mid-2025, it has helped investors make introductions and advise founders across EF cohorts.',
     technologies: ['React', 'Vertex AI', 'BigQuery', 'OpenAI API'],
     variant: 'search' as const,
   },
   {
-    name: 'SEMTAG',
+    name: 'Generating Agent-Testable GUIs',
     category: 'Devtool',
     description:
-      'SemTag is an end-to-end testing agent that tests your GUI app using 50% less tokens than regular browser agents. It’s the result of my master’s thesis on optimising AI browsing agents for end-to-end GUI testing. (Still in development)',
+      'AI browser agents are increasingly used for application testing, but their heavy token use makes them expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular browser agents. The research is conducted with CodeSpeak and Andrey Breslav, creator of Kotlin.',
     technologies: ['Python', 'React', 'Agents SDK'],
     variant: 'agent' as const,
   },
@@ -61,30 +62,34 @@ const projects = [
 
 const experience = [
   {
-    title: 'NEWGRAIN',
+    title: 'Newgrain',
     role: 'Founder',
+    date: '2022–present',
     description:
-      'Incorporated in the UK, grew team of 4, raised funding from LSE Generate and Sterling Road.',
+      'Founded and built a consumer startup based in the UK, led a team of four, and secured funding from LSE Generate and Sterling Road.',
   },
   {
-    title: 'ENTREPRENEURS FIRST',
+    title: 'Entrepreneurs First',
     role: 'Data & Tech Analyst',
+    date: 'Feb 2024 – Aug 2025',
     description:
-      'Built 20+ internal tools across investing, fund, marketing and leadership teams at Europe’s top pre-seed accelerator.',
+      'Built 20+ internal tools and automations across investing, fund, marketing and leadership teams at Europe’s top pre-seed accelerator.',
   },
 ]
 
 const education = [
   {
-    title: 'IMPERIAL COLLEGE LONDON',
+    title: 'Imperial College London',
     role: 'MSc Computing',
+    date: '2025–2026 (graduating Sep 2026)',
     description:
-      'Learned CS fundamentals – programming, low-level systems, algorithms, networks, machine learning – and developed fluency in C++, JS, Python, PyTorch. So far with highest honors (First Class Honors)',
+      'Learned CS fundamentals: programming, low-level systems, algorithms, networks, machine learning. Developed fluency in C++, JS, Python, PyTorch. Currently achieving Distinction-level results (highest UK master’s classification).',
   },
   {
-    title: 'LONDON SCHOOL OF ECONOMICS (LSE)',
+    title: 'London School of Economics (LSE)',
     role: 'BSc Management',
-    description: 'Graduated in top 10% of year group with highest honors (First Class Honors)',
+    date: '2020–2024',
+    description: 'Graduated with First Class Honours, ranking in the top 10% of the cohort.',
   },
 ]
 
