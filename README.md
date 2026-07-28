@@ -35,7 +35,7 @@ project spend limit and consider durable rate limiting or bot protection.
 ## Knowledge base
 
 `knowledge/timothee.md` is the single source of truth for the assistant. The server reads the complete
-file when it starts and includes the full text in the instructions sent with every OpenAI request.
+file for each question and includes the full text in the instructions sent with every OpenAI request.
 There is no vector store, embedding, retrieval, or separate compact profile.
 
 Keep the document factual and public. After editing it, restart the local development server or

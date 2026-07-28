@@ -1,10 +1,6 @@
 import { readFileSync } from 'node:fs'
+import { join } from 'node:path'
 import OpenAI from 'openai'
-
-const knowledgeBase = readFileSync(
-  new URL('../knowledge/timothee.md', import.meta.url),
-  'utf8',
-)
 
 export interface ChatMessage {
   role: 'user' | 'assistant'
@@ -17,7 +13,8 @@ interface ChatOptions {
   model?: string
 }
 
-export const portfolioAssistantInstructions = `
+export function buildPortfolioAssistantInstructions(knowledgeBase: string) {
+  return `
 You are the portfolio assistant for Timothee Issenmann.
 
 SCOPE
@@ -38,6 +35,7 @@ STYLE
 KNOWLEDGE BASE
 ${knowledgeBase}
 `.trim()
+}
 
 export function parseChatMessages(value: unknown): ChatMessage[] {
   if (!Array.isArray(value)) throw new Error('Messages must be an array.')
@@ -75,10 +73,14 @@ export async function createChatReply({
   model = 'gpt-5.6',
 }: ChatOptions) {
   const client = new OpenAI({ apiKey })
+  const knowledgeBase = readFileSync(
+    join(process.cwd(), 'knowledge', 'timothee.md'),
+    'utf8',
+  )
 
   const response = await client.responses.create({
     model,
-    instructions: portfolioAssistantInstructions,
+    instructions: buildPortfolioAssistantInstructions(knowledgeBase),
     input: messages,
     max_output_tokens: 350,
   })

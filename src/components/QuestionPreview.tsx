@@ -36,7 +36,15 @@ export function QuestionPreview() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: nextMessages }),
       })
-      const data = await response.json() as { reply?: string; error?: string }
+      const responseText = await response.text()
+      let data: { reply?: string; error?: string }
+
+      try {
+        data = JSON.parse(responseText) as { reply?: string; error?: string }
+      } catch {
+        throw new Error('The portfolio assistant is temporarily unavailable. Please try again shortly.')
+      }
+
       if (!response.ok || !data.reply) throw new Error(data.error || 'Unable to answer right now.')
       setMessages((current) => [...current, { role: 'assistant', content: data.reply as string }])
     } catch (requestError) {
