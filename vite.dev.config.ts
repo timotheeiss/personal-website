@@ -1,6 +1,6 @@
 import react from '@vitejs/plugin-react'
 import { defineConfig, loadEnv, type Plugin } from 'vite'
-import { handleChatRequest } from './server/http'
+import { handleChatRequest } from './api/_http'
 
 function localChatApi(environment: Record<string, string>): Plugin {
   return {

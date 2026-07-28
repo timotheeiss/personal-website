@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'node:http'
-import { createChatReply, parseChatMessages } from './chat'
+import { createChatReply, parseChatMessages } from './_chat'
 
 interface ChatEnvironment {
   OPENAI_API_KEY?: string
