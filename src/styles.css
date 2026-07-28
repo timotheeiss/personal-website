@@ -195,7 +195,7 @@ h1 {
 
 .project-list {
   display: grid;
-  gap: 38px;
+  gap: 54px;
 }
 
 .project {
@@ -236,16 +236,9 @@ h1 {
   font-weight: 400;
 }
 
-.resume-entry__date {
-  display: block;
-  color: rgb(21 21 21 / 48%);
-  font-size: 0.82em;
-  line-height: 1.45;
-  font-weight: 400;
-}
-
 .project > p:not(.project__stack) {
-  margin-top: 18px;
+  margin-top: 8px;
+  color: rgb(21 21 21 / 78%);
 }
 
 .inline-project-link {
@@ -404,7 +397,8 @@ h1 {
 }
 
 .resume-entry p {
-  margin-top: 1px;
+  margin-top: 8px;
+  color: rgb(21 21 21 / 78%);
 }
 
 .contact-section a {
