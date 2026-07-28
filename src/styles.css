@@ -232,7 +232,15 @@ h1 {
 }
 
 .project__category,
-.resume-entry h3 span:last-child {
+.resume-entry__role {
+  font-weight: 400;
+}
+
+.resume-entry__date {
+  display: block;
+  color: rgb(21 21 21 / 48%);
+  font-size: 0.82em;
+  line-height: 1.45;
   font-weight: 400;
 }
 

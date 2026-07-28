@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 interface ResumeEntry {
   title: string
   role: string
+  date: string
   description: ReactNode
 }
 
@@ -20,7 +21,8 @@ export function ResumeSection({ title, entries }: ResumeSectionProps) {
           <article className="resume-entry" key={`${entry.title}-${entry.role}`}>
             <h3>
               <span className="entry-title">{entry.title}</span> <span aria-hidden="true">·</span>{' '}
-              <span>{entry.role}</span>
+              <span className="resume-entry__role">{entry.role}</span>
+              <span className="resume-entry__date">{entry.date}</span>
             </h3>
             <p>{entry.description}</p>
           </article>
