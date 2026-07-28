@@ -501,6 +501,12 @@ h1 {
   gap: 9px;
 }
 
+.chat-scroll-anchor {
+  height: 1px;
+  scroll-margin-bottom: 90px;
+  pointer-events: none;
+}
+
 .chat-message {
   width: fit-content;
   max-width: 82%;

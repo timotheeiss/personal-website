@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import ArrowUp from '@gravity-ui/icons/ArrowUp'
 import ReactMarkdown from 'react-markdown'
 
@@ -99,6 +99,18 @@ export function QuestionPreview() {
   const [question, setQuestion] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
+  const chatEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!messages.length) return
+
+    const prefersReducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches ?? false
+    const behavior = messages.at(-1)?.role === 'user' && !prefersReducedMotion
+      ? 'smooth'
+      : 'auto'
+
+    chatEndRef.current?.scrollIntoView?.({ behavior, block: 'end' })
+  }, [messages])
 
   const askQuestion = async (content: string) => {
     const trimmedQuestion = content.trim()
@@ -169,6 +181,8 @@ export function QuestionPreview() {
         </div>
       )}
 
+      <div ref={chatEndRef} className="chat-scroll-anchor" aria-hidden="true" />
+
       <div className="question-form-dock">
         <form className="question-form" onSubmit={handleSubmit}>
           <label className="visually-hidden" htmlFor="portfolio-question">Ask a question about Timothee</label>
@@ -178,6 +192,7 @@ export function QuestionPreview() {
             value={question}
             maxLength={500}
             autoComplete="off"
+            autoFocus
             placeholder="Ask something about Tim…"
             disabled={isLoading}
             onChange={(event) => setQuestion(event.target.value)}
