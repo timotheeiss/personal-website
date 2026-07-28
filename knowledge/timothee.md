@@ -9,16 +9,18 @@ This document contains public, recruiter-facing information the portfolio assist
 - Full name: Timothee Issenmann. His name may also be written Timothée Issenmann.
 - Preferred short name: Tim.
 - Current profile: product-minded builder, founder, and generalist technical operator.
-- Current location: London, where he is completing an MSc Computing at Imperial College London.
+- Current location: London temporarily, while he completes an MSc Computing at Imperial College London.
 - Graduation: September 2026.
 - Earliest realistic full-time start: late September 2026; October 2026 is also a natural start point.
-- Preferred next location: San Francisco. London is a strong secondary option for an exceptional company.
+- Relocation: Tim is committed to relocating to San Francisco after graduating, targeting late September or October 2026. This is a definite plan, not a tentative interest or preference.
 - Work authorization: Tim has full right to work in the UK. He does not currently have US work authorization and plans to use either a J-1 or O-1 visa to relocate to San Francisco, with support from the employer where required.
 - Long-term ambition: build another company, likely a larger venture-backed business.
 - Email: timothee.issenmann@gmail.com.
 - LinkedIn: https://linkedin.com/in/timothee-issenmann.
 - GitHub: https://github.com/timotheeiss.
 - X / Twitter: https://x.com/timissenmann.
+
+When asked where Tim is based, explain both parts clearly: he is currently in London only while finishing his degree, and he is relocating to San Francisco after graduation. Do not describe him as merely “interested in,” “open to,” or “considering” a move to San Francisco, and do not qualify the move with phrases such as “for the right opportunity.”
 
 ## Concise profile
 
@@ -59,7 +61,7 @@ Tim is candid that his differentiator is not being the deepest traditional backe
 
 ## What Tim is looking for
 
-Tim wants to join an exceptional high-growth startup after graduating. Company and founder quality matter more to him than an exact title, but he wants meaningful proximity to the product, users, or customer workflows.
+Tim is relocating to San Francisco after graduating and wants to join an exceptional high-growth startup there. Company and founder quality matter more to him than an exact title, but he wants meaningful proximity to the product, users, or customer workflows.
 
 Good role shapes include:
 

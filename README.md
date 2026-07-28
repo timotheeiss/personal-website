@@ -28,9 +28,10 @@ included in the client bundle.
 deployment platform. The `api/chat.ts` route is ready for Vercel-compatible serverless deployment;
 a static-only host cannot run the chat endpoint.
 
-The assistant's scope and refusal rules are in `api/chat.ts`. The endpoint limits message length,
-conversation history, output length, and requests per IP. Before public launch, also configure an API
-project spend limit and consider durable rate limiting or bot protection.
+The assistant's scope and refusal rules are in `api/chat.ts`. The endpoint streams answer text to the
+browser as it is generated and limits message length, conversation history, output length, and requests
+per IP. Before public launch, also configure an API project spend limit and consider durable rate
+limiting or bot protection.
 
 ## Knowledge base
 

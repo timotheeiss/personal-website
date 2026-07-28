@@ -1,17 +1,98 @@
 import { useState, type FormEvent } from 'react'
 import ArrowUp from '@gravity-ui/icons/ArrowUp'
+import ReactMarkdown from 'react-markdown'
 
 interface ChatMessage {
   role: 'user' | 'assistant'
   content: string
 }
 
+interface ChatStreamEvent {
+  type?: 'delta' | 'done' | 'error'
+  delta?: string
+  error?: string
+}
+
 const suggestions = [
-  'What has Tim built?',
-  'What kind of role is Tim looking for?',
-  'Where is Tim based?',
-  'What is Tim passionate about?',
+  'What have you built?',
+  'What role are you looking for?',
+  'Where are you based?',
+  'What are you passionate about?',
+  'What are your strengths?',
 ]
+
+async function getResponseError(response: Response) {
+  const responseText = await response.text()
+  try {
+    const data = JSON.parse(responseText) as { error?: string }
+    return data.error || 'Unable to answer right now.'
+  } catch {
+    return 'The portfolio assistant is temporarily unavailable. Please try again shortly.'
+  }
+}
+
+async function readChatStream(response: Response, onDelta: (delta: string) => void) {
+  if (!response.body) {
+    throw new Error('The portfolio assistant is temporarily unavailable. Please try again shortly.')
+  }
+
+  const reader = response.body.getReader()
+  const decoder = new TextDecoder()
+  let buffer = ''
+  let completed = false
+
+  const processBlock = (block: string) => {
+    const payload = block
+      .split(/\r?\n/)
+      .filter((line) => line.startsWith('data:'))
+      .map((line) => line.slice(5).trim())
+      .join('\n')
+
+    if (!payload) return
+
+    let event: ChatStreamEvent
+    try {
+      event = JSON.parse(payload) as ChatStreamEvent
+    } catch {
+      throw new Error('The portfolio assistant returned an invalid response.')
+    }
+
+    if (event.type === 'delta' && event.delta) onDelta(event.delta)
+    if (event.type === 'done') completed = true
+    if (event.type === 'error') throw new Error(event.error || 'Unable to answer right now.')
+  }
+
+  while (true) {
+    const { done, value } = await reader.read()
+    buffer += decoder.decode(value, { stream: !done })
+    const blocks = buffer.split(/\r?\n\r?\n/)
+    buffer = blocks.pop() ?? ''
+    blocks.forEach(processBlock)
+    if (done) break
+  }
+
+  if (buffer.trim()) processBlock(buffer)
+  if (!completed) {
+    throw new Error('The portfolio assistant response was interrupted. Please try again.')
+  }
+}
+
+function AssistantMessage({ content }: { content: string }) {
+  return (
+    <ReactMarkdown
+      skipHtml
+      allowedElements={['p', 'strong', 'em', 'ul', 'ol', 'li', 'a', 'code', 'pre', 'br', 'blockquote']}
+      unwrapDisallowed
+      components={{
+        a: ({ href, children }) => (
+          <a href={href} target="_blank" rel="noreferrer">{children}</a>
+        ),
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  )
+}
 
 export function QuestionPreview() {
   const [messages, setMessages] = useState<ChatMessage[]>([])
@@ -36,17 +117,19 @@ export function QuestionPreview() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ messages: nextMessages }),
       })
-      const responseText = await response.text()
-      let data: { reply?: string; error?: string }
+      if (!response.ok) throw new Error(await getResponseError(response))
 
-      try {
-        data = JSON.parse(responseText) as { reply?: string; error?: string }
-      } catch {
-        throw new Error('The portfolio assistant is temporarily unavailable. Please try again shortly.')
-      }
-
-      if (!response.ok || !data.reply) throw new Error(data.error || 'Unable to answer right now.')
-      setMessages((current) => [...current, { role: 'assistant', content: data.reply as string }])
+      let streamedReply = ''
+      await readChatStream(response, (delta) => {
+        streamedReply += delta
+        const nextReply = streamedReply
+        setMessages((current) => {
+          const withoutStreamingReply = current.at(-1)?.role === 'assistant'
+            ? current.slice(0, -1)
+            : current
+          return [...withoutStreamingReply, { role: 'assistant', content: nextReply }]
+        })
+      })
     } catch (requestError) {
       setError(requestError instanceof Error ? requestError.message : 'Unable to answer right now.')
     } finally {
@@ -75,10 +158,14 @@ export function QuestionPreview() {
         <div className="question-conversation" aria-live="polite" aria-busy={isLoading}>
           {messages.map((message, index) => (
             <div className={`chat-message chat-message--${message.role}`} key={`${message.role}-${index}`}>
-              {message.content}
+              {message.role === 'assistant'
+                ? <AssistantMessage content={message.content} />
+                : message.content}
             </div>
           ))}
-          {isLoading && <div className="chat-message chat-message--assistant chat-message--loading">Thinking…</div>}
+          {isLoading && messages.at(-1)?.role !== 'assistant' && (
+            <div className="chat-message chat-message--assistant chat-message--loading">Thinking…</div>
+          )}
         </div>
       )}
 
