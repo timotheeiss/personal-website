@@ -1,6 +1,6 @@
 import ArrowUpRightFromSquare from '@gravity-ui/icons/ArrowUpRightFromSquare'
 import type { ReactNode } from 'react'
-import { MockupPlaceholder } from './MockupPlaceholder'
+import { MockupPlaceholder, type MockupImage } from './MockupPlaceholder'
 
 interface ProjectProps {
   name: string
@@ -9,9 +9,10 @@ interface ProjectProps {
   technologies: string[]
   variant: 'film' | 'search' | 'agent'
   href?: string
+  images?: MockupImage[]
 }
 
-export function Project({ name, category, description, technologies, variant, href }: ProjectProps) {
+export function Project({ name, category, description, technologies, variant, href, images }: ProjectProps) {
   return (
     <article className="project">
       <div className="project__heading-row">
@@ -35,7 +36,7 @@ export function Project({ name, category, description, technologies, variant, hr
       <p className="project__stack" aria-label={`Technologies: ${technologies.join(', ')}`}>
         {technologies.join(' | ')}
       </p>
-      <MockupPlaceholder project={name} variant={variant} />
+      <MockupPlaceholder project={name} variant={variant} images={images} />
     </article>
   )
 }

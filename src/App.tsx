@@ -39,9 +39,17 @@ const projects = [
         </a>
       </>
     ),
-    technologies: ['React', 'Swift', 'Firebase', 'AWS'],
+    technologies: ['Swift', 'React', 'Firebase', 'AWS'],
     variant: 'film' as const,
     href: 'https://newgrain.app',
+    images: [
+      { src: '/projects/newgrain/01.jpg', alt: 'Newgrain post view and an introduction to its film photography community' },
+      { src: '/projects/newgrain/02.jpg', alt: 'Newgrain film stock library with community photographs and technical information' },
+      { src: '/projects/newgrain/03.jpg', alt: 'Newgrain chronological feed showing a curated film photograph from Venice' },
+      { src: '/projects/newgrain/04.jpg', alt: 'Newgrain photographer profile and portfolio grid' },
+      { src: '/projects/newgrain/05.jpg', alt: 'Newgrain post metadata for film stock, camera, lens, format and development' },
+      { src: '/projects/newgrain/06.jpg', alt: 'Newgrain community page featuring curated photographs and new photographers' },
+    ],
   },
   {
     name: 'Hivemind',
@@ -56,7 +64,8 @@ const projects = [
     category: 'Devtool',
     description: (
       <>
-        AI browser agents are increasingly used for application testing, but their heavy token use makes them
+        AI browser agents are increasingly used for application testing, but their heavy token ut
+        e makes them
         expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and
         detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular
         browser agents. The research is conducted with{' '}
