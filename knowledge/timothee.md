@@ -34,7 +34,7 @@ Tim is most energized by:
 - Building useful products and seeing real people adopt them.
 - Understanding users, shaping a product, and deciding what should be built—not merely implementing isolated tickets.
 - Product design, visual craft, calm interfaces, and intentional user experiences.
-- Working on ambiguous, messy problems where software can create leverage.
+- Working on ambiguous problems where software can create leverage.
 - Early-stage startups, entrepreneurship, and learning how exceptional companies are built.
 - Applied AI, especially agents, and AI applied to complex business workflows.
 - Film and analog photography, including the tools, techniques, and community around it.
@@ -158,7 +158,7 @@ Hivemind was EF's first internal AI product. Tim built it as a semantic search e
 
 Tim received EF's “Most Impactful New Joiner” award, selected from 15 nominees.
 
-His EF work demonstrates that he can understand messy high-context workflows, work with non-technical users, connect software and data into operating systems, migrate business-critical processes, and ship tools that become part of daily work.
+His EF work demonstrates that he can understand high-context workflows, work with non-technical users, connect software and data into operating systems, migrate business-critical processes, and ship tools that become part of daily work.
 
 ## Current MSc and AI-agent research
 
