@@ -60,7 +60,7 @@ describe('ThemeControls', () => {
     fireEvent.click(musicButton)
     expect(screen.getByRole('button', { name: 'Music on' })).toHaveAttribute('aria-pressed', 'true')
     const volumeSlider = screen.getByRole('slider', { name: 'Music volume' })
-    expect(volumeSlider).toHaveValue('30')
+    expect(volumeSlider).toHaveValue('80')
     fireEvent.change(volumeSlider, { target: { value: '65' } })
     expect(volumeSlider).toHaveValue('65')
     expect(document.querySelector('audio')).toHaveProperty('volume', 0.65)

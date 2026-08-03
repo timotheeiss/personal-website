@@ -100,7 +100,7 @@ export function ThemeControls({
 }: ThemeControlsProps) {
   const [openControl, setOpenControl] = useState<OpenControl>(null)
   const [musicOn, setMusicOn] = useState(false)
-  const [musicVolume, setMusicVolume] = useState(30)
+  const [musicVolume, setMusicVolume] = useState(80)
   const railRef = useRef<HTMLElement>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
 
