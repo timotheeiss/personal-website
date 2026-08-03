@@ -125,8 +125,7 @@ const projects = [
     category: 'Devtool',
     description: (
       <>
-        AI browser agents are increasingly used for application testing, but their heavy token ut
-        e makes them
+        AI browser agents are increasingly used for application testing, but their heavy token use makes them
         expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and
         detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular
         browser agents. The research is conducted with{' '}
