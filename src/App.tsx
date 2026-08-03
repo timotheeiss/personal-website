@@ -9,6 +9,73 @@ import { ResumeSection } from './components/ResumeSection'
 import { ThemeControls } from './components/ThemeControls'
 import { useThemePreferences } from './hooks/useThemePreferences'
 
+const newgrainMobileAlts = [
+  'Newgrain mobile app overview with the feed and a featured post',
+  'Newgrain mobile film-stock index and Portra 160 details',
+  'Newgrain mobile photographer profile and post details',
+  'Newgrain mobile discovery categories and photo search results',
+]
+
+const newgrainWebAlts = [
+  'Newgrain web app overview with its photographic feed',
+  'Newgrain web film-stock page with Ektar 100 photographs and details',
+  'Newgrain web post details with photography metadata and discussion',
+  'Newgrain web photographer profile and portfolio grid',
+]
+
+const newgrainImageVariants = {
+  mobile: {
+    dark: newgrainMobileAlts.map((alt, index) => ({
+      src: `/projects/newgrain/mobile/dark/Mobile-${index + 1}-dark.jpg`,
+      alt,
+    })),
+    light: newgrainMobileAlts.map((alt, index) => ({
+      src: `/projects/newgrain/mobile/light/Mobile-${index + 1}-light.jpg`,
+      alt,
+    })),
+  },
+  web: {
+    dark: newgrainWebAlts.map((alt, index) => ({
+      src: `/projects/newgrain/web/dark/Web-${index + 1}-dark.jpg`,
+      alt,
+    })),
+    light: newgrainWebAlts.map((alt, index) => ({
+      src: `/projects/newgrain/web/light/Web-${index + 1}-light.jpg`,
+      alt,
+    })),
+  },
+}
+
+const hivemindImages = [
+  {
+    src: '/projects/hivemind/01.jpg',
+    alt: 'Hivemind semantic search homepage for finding relevant startup teams',
+  },
+  {
+    src: '/projects/hivemind/02.jpg',
+    alt: 'Hivemind search results for AI companies in finance',
+  },
+  {
+    src: '/projects/hivemind/03.jpg',
+    alt: 'Hivemind company details panel alongside semantic search results',
+  },
+]
+
+const semtagImages = [
+  {
+    src: '/projects/semtag/01.jpg',
+    alt: 'Semtag inspection overlay identifying interactive elements and missing semantic hints',
+  },
+  {
+    src: '/projects/semtag/02.jpg',
+    alt: 'Semtag semantic snapshot alongside an annotated product details page',
+  },
+  {
+    src: '/projects/semtag/03.jpg',
+    alt: 'Browser-agent test run using semantic hints to identify a planted interface bug',
+  },
+]
+
 const projects = [
   {
     name: 'Newgrain',
@@ -42,14 +109,7 @@ const projects = [
     technologies: ['Swift', 'React', 'Firebase', 'AWS'],
     variant: 'film' as const,
     href: 'https://newgrain.app',
-    images: [
-      { src: '/projects/newgrain/01.jpg', alt: 'Newgrain post view and an introduction to its film photography community' },
-      { src: '/projects/newgrain/02.jpg', alt: 'Newgrain film stock library with community photographs and technical information' },
-      { src: '/projects/newgrain/03.jpg', alt: 'Newgrain chronological feed showing a curated film photograph from Venice' },
-      { src: '/projects/newgrain/04.jpg', alt: 'Newgrain photographer profile and portfolio grid' },
-      { src: '/projects/newgrain/05.jpg', alt: 'Newgrain post metadata for film stock, camera, lens, format and development' },
-      { src: '/projects/newgrain/06.jpg', alt: 'Newgrain community page featuring curated photographs and new photographers' },
-    ],
+    imageVariants: newgrainImageVariants,
   },
   {
     name: 'Hivemind',
@@ -58,6 +118,7 @@ const projects = [
       'At Entrepreneurs First, valuable portfolio data and investor judgment were scattered across memos, Slack, and CRM records. I built Hivemind, a semantic search engine that lets investors find relevant teams and founders using natural language. Launched in mid-2025, it has helped investors make introductions and advise founders across EF cohorts.',
     technologies: ['React', 'Vertex AI', 'BigQuery', 'OpenAI API'],
     variant: 'search' as const,
+    images: hivemindImages,
   },
   {
     name: 'Generating Agent-Testable GUIs',
@@ -83,6 +144,7 @@ const projects = [
     ),
     technologies: ['Python', 'React', 'Agents SDK'],
     variant: 'agent' as const,
+    images: semtagImages,
   },
 ]
 
@@ -186,8 +248,8 @@ export default function App() {
             </div>
             <p className="profile-subtitle">Product Engineer & Founder · Relocating to San Francisco</p>
             <p className="profile-introduction">
-              I've shipped products from zero to 10k+ users, owning everything from design, engineering, and
-              growth. I love helping users and crafting great products. I’m graduating from my CS Master’s in
+              I've shipped products from zero to 10k+ users, building end-to-end from design to engineering and
+              growth. I’m graduating from my CS Master’s in
               September 2026 and looking to join an early-stage startup in San Francisco from autumn 2026.
             </p>
           </header>
