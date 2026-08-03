@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState, type Dispatch, type SetStateAction } from 'react'
-import FaceAlien from '@gravity-ui/icons/FaceAlien'
 import FontCase from '@gravity-ui/icons/FontCase'
 import Pencil from '@gravity-ui/icons/Pencil'
 import Volume from '@gravity-ui/icons/Volume'
@@ -37,27 +36,6 @@ function ControlButton({ label, active, controls, children, onClick }: ControlBu
       onClick={onClick}
     >
       <span className="control-label">{label}</span>
-      <span className="control-icon">{children}</span>
-    </button>
-  )
-}
-
-interface ComingSoonControlProps {
-  label: string
-  children: React.ReactNode
-}
-
-function ComingSoonControl({ label, children }: ComingSoonControlProps) {
-  return (
-    <button
-      className="control-button control-button--rail-action control-button--coming-soon"
-      type="button"
-      aria-label={`${label}, coming soon`}
-      aria-disabled="true"
-    >
-      <span className="control-label">
-        {label} <small>coming soon</small>
-      </span>
       <span className="control-icon">{children}</span>
     </button>
   )
@@ -333,7 +311,6 @@ export function ThemeControls({
           </div>
         )}
       </div>
-      <ComingSoonControl label="Pet"><FaceAlien width={20} height={20} aria-hidden="true" /></ComingSoonControl>
     </aside>
   )
 }

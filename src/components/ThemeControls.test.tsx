@@ -43,9 +43,8 @@ describe('ThemeControls', () => {
     expect(screen.queryByRole('group', { name: 'Accent colors' })).not.toBeInTheDocument()
   })
 
-  it('marks the future pet control as unavailable and toggles action states', () => {
+  it('toggles action states', () => {
     render(<Harness />)
-    expect(screen.getByRole('button', { name: 'Pet, coming soon' })).toHaveAttribute('aria-disabled', 'true')
 
     const paintButton = screen.getByRole('button', { name: 'Doodle off' })
     expect(paintButton).toHaveAttribute('aria-pressed', 'false')
