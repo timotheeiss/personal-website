@@ -21,8 +21,6 @@ const suggestions = [
   'What are your strengths?',
 ]
 
-const CONVERSATION_ID_STORAGE_KEY = 'portfolio-chat-conversation-id'
-
 function createConversationId() {
   if (typeof crypto.randomUUID === 'function') return crypto.randomUUID()
 
@@ -31,19 +29,6 @@ function createConversationId() {
   bytes[8] = (bytes[8] & 0x3f) | 0x80
   const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')
   return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
-}
-
-function getConversationId() {
-  try {
-    const storedConversationId = window.sessionStorage.getItem(CONVERSATION_ID_STORAGE_KEY)
-    if (storedConversationId) return storedConversationId
-
-    const conversationId = createConversationId()
-    window.sessionStorage.setItem(CONVERSATION_ID_STORAGE_KEY, conversationId)
-    return conversationId
-  } catch {
-    return createConversationId()
-  }
 }
 
 async function getResponseError(response: Response) {
@@ -125,6 +110,7 @@ export function QuestionPreview() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const chatEndRef = useRef<HTMLDivElement>(null)
+  const conversationIdRef = useRef<string | null>(null)
 
   useEffect(() => {
     if (!messages.length) return
@@ -149,7 +135,8 @@ export function QuestionPreview() {
     setIsLoading(true)
 
     try {
-      const conversationId = getConversationId()
+      const conversationId = conversationIdRef.current ?? createConversationId()
+      conversationIdRef.current = conversationId
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -182,6 +169,7 @@ export function QuestionPreview() {
 
   return (
     <section className="question-preview" aria-label="Ask questions about Timothee">
+      <p className="chat-context-indicator" role="status">New chat</p>
       {messages.length === 0 && (
         <div className="question-suggestions" aria-label="Suggested questions">
           {suggestions.map((suggestion) => (

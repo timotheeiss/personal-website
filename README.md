@@ -36,7 +36,7 @@ limiting or bot protection.
 ### Chat transcripts
 
 Every completed user/assistant exchange is stored in the connected Supabase project's `chat_turns`
-table. The browser creates a random conversation ID per browser session; it is not an account or a
+table. Each page load starts a new chat context with a random conversation ID; it is not an account or a
 persistent visitor identifier. To enable recording, set these server-only environment variables locally
 and in Vercel:
 

@@ -17,10 +17,7 @@ function createStreamResponse(chunks: string[]) {
 }
 
 describe('QuestionPreview', () => {
-  afterEach(() => {
-    vi.unstubAllGlobals()
-    window.sessionStorage.clear()
-  })
+  afterEach(() => vi.unstubAllGlobals())
 
   it('sends a question and displays the answer', async () => {
     const fetchMock = vi.fn().mockResolvedValue(createStreamResponse([
@@ -33,6 +30,7 @@ describe('QuestionPreview', () => {
     const user = userEvent.setup()
     render(<QuestionPreview />)
 
+    expect(screen.getByRole('status')).toHaveTextContent('New chat')
     await user.type(screen.getByLabelText('Ask a question about Timothee'), 'What did Tim build?')
     await user.click(screen.getByRole('button', { name: 'Send question' }))
 
@@ -43,6 +41,32 @@ describe('QuestionPreview', () => {
     const request = fetchMock.mock.calls[0]?.[1] as RequestInit
     const body = JSON.parse(request.body as string) as { conversationId?: string }
     expect(body.conversationId).toMatch(/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i)
+  })
+
+  it('creates a new conversation ID when a fresh chat context is mounted', async () => {
+    const fetchMock = vi.fn().mockImplementation(() => Promise.resolve(createStreamResponse([
+      'data: {"type":"delta","delta":"Hello."}\n\n',
+      'data: {"type":"done"}\n\n',
+    ])))
+    vi.stubGlobal('fetch', fetchMock)
+    const user = userEvent.setup()
+    const firstChat = render(<QuestionPreview />)
+
+    await user.click(screen.getByRole('button', { name: 'What have you built?' }))
+    await screen.findByText('Hello.')
+    const firstBody = JSON.parse((fetchMock.mock.calls[0]?.[1] as RequestInit).body as string) as {
+      conversationId: string
+    }
+
+    firstChat.unmount()
+    render(<QuestionPreview />)
+    await user.click(screen.getByRole('button', { name: 'What have you built?' }))
+    await screen.findByText('Hello.')
+    const secondBody = JSON.parse((fetchMock.mock.calls[1]?.[1] as RequestInit).body as string) as {
+      conversationId: string
+    }
+
+    expect(secondBody.conversationId).not.toBe(firstBody.conversationId)
   })
 
   it('shows server errors accessibly', async () => {
