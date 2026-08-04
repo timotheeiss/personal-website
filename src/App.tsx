@@ -122,7 +122,7 @@ const projects = [
   },
   {
     name: 'Generating Agent-Testable GUIs',
-    category: 'Devtool',
+    category: 'Research',
     description: (
       <>
         AI browser agents are increasingly used for application testing, but their heavy token use makes them
