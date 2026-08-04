@@ -30,7 +30,6 @@ describe('QuestionPreview', () => {
     const user = userEvent.setup()
     render(<QuestionPreview />)
 
-    expect(screen.getByRole('status')).toHaveTextContent('New chat')
     await user.type(screen.getByLabelText('Ask a question about Timothee'), 'What did Tim build?')
     await user.click(screen.getByRole('button', { name: 'Send question' }))
 

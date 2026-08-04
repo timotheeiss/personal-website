@@ -993,13 +993,6 @@ h1 {
   margin-top: 43px;
 }
 
-.chat-context-indicator {
-  margin: 0;
-  color: rgb(21 21 21 / 43%);
-  font-size: 11px;
-  letter-spacing: 0.02em;
-}
-
 .question-suggestions {
   display: flex;
   flex-wrap: wrap;

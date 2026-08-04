@@ -169,7 +169,6 @@ export function QuestionPreview() {
 
   return (
     <section className="question-preview" aria-label="Ask questions about Timothee">
-      <p className="chat-context-indicator" role="status">New chat</p>
       {messages.length === 0 && (
         <div className="question-suggestions" aria-label="Suggested questions">
           {suggestions.map((suggestion) => (
