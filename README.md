@@ -33,6 +33,23 @@ browser as it is generated and limits message length, conversation history, outp
 per IP. Before public launch, also configure an API project spend limit and consider durable rate
 limiting or bot protection.
 
+### Chat transcripts
+
+Every completed user/assistant exchange is stored in the connected Supabase project's `chat_turns`
+table. The browser creates a random conversation ID per browser session; it is not an account or a
+persistent visitor identifier. To enable recording, set these server-only environment variables locally
+and in Vercel:
+
+```sh
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SECRET_KEY=your_supabase_secret_key
+```
+
+Use a Supabase secret key from **Settings → API Keys**, never a publishable key, and do not prefix it
+with `VITE_`. For older Supabase projects, `SUPABASE_SERVICE_ROLE_KEY` is also supported. The chat still
+answers if transcript recording is misconfigured, but the server logs the failure so visitor conversations
+are never exposed or blocked by the logging integration.
+
 ## Knowledge base
 
 `knowledge/timothee.md` is the single source of truth for the assistant. The server reads the complete

@@ -17,7 +17,10 @@ function createStreamResponse(chunks: string[]) {
 }
 
 describe('QuestionPreview', () => {
-  afterEach(() => vi.unstubAllGlobals())
+  afterEach(() => {
+    vi.unstubAllGlobals()
+    window.sessionStorage.clear()
+  })
 
   it('sends a question and displays the answer', async () => {
     const fetchMock = vi.fn().mockResolvedValue(createStreamResponse([
@@ -37,6 +40,9 @@ describe('QuestionPreview', () => {
     expect(boldProjectName.tagName).toBe('STRONG')
     expect(boldProjectName.closest('.chat-message')).toHaveTextContent('I built Newgrain.')
     expect(fetchMock).toHaveBeenCalledWith('/api/chat', expect.objectContaining({ method: 'POST' }))
+    const request = fetchMock.mock.calls[0]?.[1] as RequestInit
+    const body = JSON.parse(request.body as string) as { conversationId?: string }
+    expect(body.conversationId).toMatch(/^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$/i)
   })
 
   it('shows server errors accessibly', async () => {

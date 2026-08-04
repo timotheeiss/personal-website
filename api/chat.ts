@@ -10,6 +10,9 @@ interface ChatMessage {
 interface ChatEnvironment {
   OPENAI_API_KEY?: string
   OPENAI_MODEL?: string
+  SUPABASE_URL?: string
+  SUPABASE_SECRET_KEY?: string
+  SUPABASE_SERVICE_ROLE_KEY?: string
 }
 
 interface OpenAIResponse {
@@ -37,6 +40,7 @@ const RATE_LIMIT_MAX = 12
 const MAX_USER_MESSAGE_LENGTH = 500
 const MAX_ASSISTANT_MESSAGE_LENGTH = 4_000
 const MAX_REQUEST_BODY_LENGTH = 32_000
+const UUID_PATTERN = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i
 
 function sendJson(response: ServerResponse, status: number, body: unknown) {
   response.statusCode = status
@@ -108,6 +112,13 @@ export function parseChatMessages(value: unknown): ChatMessage[] {
     throw new Error('The final message must be from the user.')
   }
   return messages
+}
+
+export function parseConversationId(value: unknown) {
+  if (typeof value !== 'string' || !UUID_PATTERN.test(value)) {
+    throw new Error('Conversation ID must be a valid UUID.')
+  }
+  return value.toLowerCase()
 }
 
 function buildInstructions(knowledgeBase: string) {
@@ -187,6 +198,7 @@ async function streamChatReply(
   const decoder = new TextDecoder()
   let buffer = ''
   let hasText = false
+  let assistantResponse = ''
 
   const processLine = (line: string) => {
     if (!line.startsWith('data:')) return
@@ -202,6 +214,7 @@ async function streamChatReply(
 
     if (event.type === 'response.output_text.delta' && event.delta) {
       hasText = true
+      assistantResponse += event.delta
       sendStreamEvent(response, { type: 'delta', delta: event.delta })
       return
     }
@@ -227,8 +240,47 @@ async function streamChatReply(
   if (buffer.trim()) processLine(buffer)
   if (!hasText) throw new Error('The model returned an empty response.')
 
-  sendStreamEvent(response, { type: 'done' })
-  response.end()
+  return assistantResponse
+}
+
+export async function saveChatTurn(
+  environment: ChatEnvironment,
+  turn: {
+    conversationId: string
+    turnNumber: number
+    userPrompt: string
+    assistantResponse: string
+    createdAt: string
+  },
+) {
+  const supabaseUrl = environment.SUPABASE_URL
+  const supabaseKey = environment.SUPABASE_SECRET_KEY || environment.SUPABASE_SERVICE_ROLE_KEY
+
+  if (!supabaseUrl || !supabaseKey) {
+    console.warn('Chat transcript logging is disabled: Supabase environment variables are missing.')
+    return
+  }
+
+  const response = await fetch(new URL('/rest/v1/chat_turns', supabaseUrl), {
+    method: 'POST',
+    headers: {
+      apikey: supabaseKey,
+      'Content-Type': 'application/json',
+      Prefer: 'return=minimal',
+    },
+    body: JSON.stringify({
+      conversation_id: turn.conversationId,
+      turn_number: turn.turnNumber,
+      user_prompt: turn.userPrompt,
+      assistant_response: turn.assistantResponse,
+      created_at: turn.createdAt,
+      completed_at: new Date().toISOString(),
+    }),
+  })
+
+  if (!response.ok) {
+    throw new Error(`Supabase chat transcript insert failed (${response.status}).`)
+  }
 }
 
 export async function handleChatRequest(
@@ -254,19 +306,38 @@ export async function handleChatRequest(
   }
 
   try {
-    const body = await readJsonBody(request) as { messages?: unknown }
+    const body = await readJsonBody(request) as { messages?: unknown; conversationId?: unknown }
     const messages = parseChatMessages(body?.messages)
-    await streamChatReply(
+    const conversationId = parseConversationId(body?.conversationId)
+    const createdAt = new Date().toISOString()
+    const assistantResponse = await streamChatReply(
       apiKey,
       environment.OPENAI_MODEL || 'gpt-5.6-luna',
       messages,
       response,
     )
+    const userPrompt = messages.at(-1)?.content
+
+    try {
+      await saveChatTurn(environment, {
+        conversationId,
+        turnNumber: messages.filter((message) => message.role === 'user').length,
+        userPrompt: userPrompt!,
+        assistantResponse,
+        createdAt,
+      })
+    } catch (loggingError) {
+      console.error('Portfolio chat transcript logging failed:', loggingError)
+    }
+
+    sendStreamEvent(response, { type: 'done' })
+    response.end()
   } catch (error) {
     const message = error instanceof Error ? error.message : 'Unable to answer right now.'
     const isInputError = message.startsWith('Messages')
       || message.startsWith('Each message')
       || message.startsWith('The final message')
+      || message.startsWith('Conversation ID')
       || message.startsWith('Request body')
       || error instanceof SyntaxError
 

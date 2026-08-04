@@ -21,6 +21,31 @@ const suggestions = [
   'What are your strengths?',
 ]
 
+const CONVERSATION_ID_STORAGE_KEY = 'portfolio-chat-conversation-id'
+
+function createConversationId() {
+  if (typeof crypto.randomUUID === 'function') return crypto.randomUUID()
+
+  const bytes = crypto.getRandomValues(new Uint8Array(16))
+  bytes[6] = (bytes[6] & 0x0f) | 0x40
+  bytes[8] = (bytes[8] & 0x3f) | 0x80
+  const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('')
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`
+}
+
+function getConversationId() {
+  try {
+    const storedConversationId = window.sessionStorage.getItem(CONVERSATION_ID_STORAGE_KEY)
+    if (storedConversationId) return storedConversationId
+
+    const conversationId = createConversationId()
+    window.sessionStorage.setItem(CONVERSATION_ID_STORAGE_KEY, conversationId)
+    return conversationId
+  } catch {
+    return createConversationId()
+  }
+}
+
 async function getResponseError(response: Response) {
   const responseText = await response.text()
   try {
@@ -124,10 +149,11 @@ export function QuestionPreview() {
     setIsLoading(true)
 
     try {
+      const conversationId = getConversationId()
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: nextMessages }),
+        body: JSON.stringify({ messages: nextMessages, conversationId }),
       })
       if (!response.ok) throw new Error(await getResponseError(response))
 
