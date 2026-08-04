@@ -114,8 +114,24 @@ const projects = [
   {
     name: 'Hivemind',
     category: 'Internal tool',
-    description:
-      'At Entrepreneurs First, valuable portfolio data and investor judgment were scattered across memos, Slack, and CRM records. I built Hivemind, a semantic search engine that lets investors find relevant teams and founders using natural language. Launched in mid-2025, it has helped investors make introductions and advise founders across EF cohorts.',
+    description: (
+      <>
+        At{' '}
+        <a
+          className="inline-project-link"
+          href="https://joinef.com"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Entrepreneurs First (opens in a new tab)"
+        >
+          Entrepreneurs First
+        </a>
+        {', '}valuable portfolio data and investor judgment were scattered across memos, Slack, and CRM records. I
+        built Hivemind, a semantic search engine that lets investors find relevant teams and founders using
+        natural language. Launched in mid-2025, it has helped investors make introductions and advise founders
+        across EF cohorts.
+      </>
+    ),
     technologies: ['React', 'Vertex AI', 'BigQuery', 'OpenAI API'],
     variant: 'search' as const,
     images: hivemindImages,
