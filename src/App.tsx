@@ -157,7 +157,7 @@ const projects = [
         and Andrey Breslav, creator of Kotlin.
       </>
     ),
-    technologies: ['Python', 'React', 'Agents SDK'],
+    technologies: ['Python', 'React', 'MCP', 'Agents SDK'],
     variant: 'agent' as const,
     images: semtagImages,
   },
