@@ -187,6 +187,7 @@ export const ContactForm = forwardRef<ContactFormHandle>(function ContactForm(_,
                     value={fields.name}
                     maxLength={80}
                     autoComplete="name"
+                    placeholder="Your name"
                     required
                     onChange={(event) => updateField('name', event.target.value)}
                   />
@@ -200,6 +201,7 @@ export const ContactForm = forwardRef<ContactFormHandle>(function ContactForm(_,
                     value={fields.email}
                     maxLength={254}
                     autoComplete="email"
+                    placeholder="you@example.com"
                     required
                     onChange={(event) => updateField('email', event.target.value)}
                   />
@@ -213,6 +215,7 @@ export const ContactForm = forwardRef<ContactFormHandle>(function ContactForm(_,
                     minLength={10}
                     maxLength={3_000}
                     rows={6}
+                    placeholder="I want to hire you!"
                     required
                     onChange={(event) => updateField('message', event.target.value)}
                   />
