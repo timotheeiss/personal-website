@@ -1,7 +1,7 @@
-import { useEffect, useState, type CSSProperties } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import LogoGithub from '@gravity-ui/icons/LogoGithub'
 import LogoLinkedin from '@gravity-ui/icons/LogoLinkedin'
-import { ContactForm } from './components/ContactForm'
+import { ContactForm, type ContactFormHandle } from './components/ContactForm'
 import { PaintCanvas } from './components/PaintCanvas'
 import { Project } from './components/Project'
 import { QuestionPreview } from './components/QuestionPreview'
@@ -200,6 +200,7 @@ export default function App() {
   const { preferences, setPreferences, resolved } = useThemePreferences()
   const [paintEnabled, setPaintEnabled] = useState(false)
   const [brushSize, setBrushSize] = useState(24)
+  const contactFormRef = useRef<ContactFormHandle>(null)
 
   useEffect(() => {
     document.documentElement.style.setProperty('--page-background', resolved.background.value)
@@ -265,7 +266,14 @@ export default function App() {
             <p className="profile-introduction">
               I've shipped products from zero to 10k+ users, building end-to-end from design to engineering and
               growth. I’m graduating from my CS Master’s in
-              September 2026 and looking to join an early-stage startup in San Francisco from autumn 2026.
+              September 2026 and looking to join an early-stage startup in San Francisco from autumn 2026.{' '}
+              <button
+                className="profile-contact-action"
+                type="button"
+                onClick={() => contactFormRef.current?.open()}
+              >
+                Get in touch
+              </button>
             </p>
           </header>
 
@@ -281,7 +289,7 @@ export default function App() {
 
           <section className="content-section contact-section" aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact</h2>
-            <ContactForm />
+            <ContactForm ref={contactFormRef} />
           </section>
 
           <QuestionPreview />

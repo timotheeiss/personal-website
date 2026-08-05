@@ -12,7 +12,7 @@ describe('ContactForm', () => {
     const user = userEvent.setup()
     render(<ContactForm />)
 
-    await user.click(screen.getByRole('button', { name: 'Send a message' }))
+    await user.click(screen.getByRole('button', { name: 'Get in touch' }))
     expect(screen.getByRole('dialog')).toBeInTheDocument()
 
     await user.type(screen.getByLabelText('Name'), 'Ada Lovelace')
@@ -27,13 +27,14 @@ describe('ContactForm', () => {
     }))
   })
 
-  it('copies the email address and confirms it', async () => {
+  it('offers an email link alongside the direct message form', async () => {
     const user = userEvent.setup()
     render(<ContactForm />)
 
-    await user.click(screen.getByRole('button', { name: 'email me' }))
+    await user.click(screen.getByRole('button', { name: 'Get in touch' }))
 
-    expect(await screen.findByRole('status')).toHaveTextContent('Email copied!')
-    await expect(navigator.clipboard.readText()).resolves.toBe('timothee.issenmann@gmail.com')
+    expect(screen.getByRole('link', { name: 'timothee.issenmann@gmail.com' }))
+      .toHaveAttribute('href', 'mailto:timothee.issenmann@gmail.com')
+    expect(screen.getByText(/send a message directly here/i)).toBeInTheDocument()
   })
 })

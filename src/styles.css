@@ -175,6 +175,24 @@ h1 {
   color: rgb(21 21 21 / 82%);
 }
 
+.profile-contact-action {
+  padding: 0;
+  color: var(--accent);
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: color-mix(in srgb, currentColor, transparent 48%);
+  text-decoration-thickness: 0.75px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+  transition: text-decoration-color 140ms ease;
+}
+
+.profile-contact-action:hover {
+  text-decoration-color: currentColor;
+}
+
 .content-section {
   margin-top: 43px;
 }
@@ -778,23 +796,6 @@ h1 {
   color: rgb(21 21 21 / 78%);
 }
 
-.contact-inline-action {
-  padding: 0;
-  color: var(--accent);
-  border: 0;
-  background: transparent;
-  text-decoration-line: underline;
-  text-decoration-color: color-mix(in srgb, currentColor, transparent 48%);
-  text-decoration-thickness: 0.75px;
-  text-underline-offset: 3px;
-  cursor: pointer;
-  transition: text-decoration-color 140ms ease;
-}
-
-.contact-inline-action:hover {
-  text-decoration-color: currentColor;
-}
-
 .contact-message-button {
   margin-top: 14px;
   padding: 8px 13px;
@@ -815,30 +816,6 @@ h1 {
 .contact-message-button:active {
   box-shadow: 0 0 8px color-mix(in srgb, var(--accent), transparent 74%);
   filter: brightness(0.98);
-}
-
-.contact-copy-action {
-  position: relative;
-  display: inline-block;
-}
-
-.contact-copy-confirmation {
-  position: absolute;
-  z-index: 2;
-  bottom: calc(100% + 7px);
-  left: 50%;
-  padding: 4px 7px;
-  color: #151515;
-  border: 1px solid rgb(21 21 21 / 7%);
-  border-radius: 6px;
-  background: color-mix(in srgb, var(--page-background), white 58%);
-  box-shadow: 0 5px 15px rgb(21 21 21 / 10%);
-  font-size: 10px;
-  line-height: 1.35;
-  white-space: nowrap;
-  transform: translateX(-50%);
-  pointer-events: none;
-  animation: contact-copy-confirmation-in 160ms ease-out both;
 }
 
 .contact-modal-backdrop {
@@ -982,11 +959,6 @@ h1 {
 @keyframes contact-modal-in {
   from { opacity: 0; transform: translateY(8px) scale(0.98); }
   to { opacity: 1; transform: translateY(0) scale(1); }
-}
-
-@keyframes contact-copy-confirmation-in {
-  from { opacity: 0; transform: translate(-50%, 3px); }
-  to { opacity: 1; transform: translate(-50%, 0); }
 }
 
 .question-preview {
@@ -1228,7 +1200,7 @@ h1 {
 .font-options input:focus-visible,
 .music-options input:focus-visible,
 .paint-options input:focus-visible,
-.contact-inline-action:focus-visible,
+.profile-contact-action:focus-visible,
 .contact-message-button:focus-visible,
 .contact-modal button:focus-visible,
 .question-form button:focus-visible,

@@ -1,5 +1,14 @@
 import Xmark from '@gravity-ui/icons/Xmark'
-import { useEffect, useId, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
+import {
+  forwardRef,
+  useEffect,
+  useId,
+  useImperativeHandle,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+} from 'react'
 
 interface ContactFields {
   name: string
@@ -17,6 +26,10 @@ const emptyFields: ContactFields = {
 
 const contactEmail = 'timothee.issenmann@gmail.com'
 
+export interface ContactFormHandle {
+  open: () => void
+}
+
 async function getResponseError(response: Response) {
   const responseText = await response.text()
   try {
@@ -27,22 +40,15 @@ async function getResponseError(response: Response) {
   }
 }
 
-export function ContactForm() {
+export const ContactForm = forwardRef<ContactFormHandle>(function ContactForm(_, ref) {
   const [isOpen, setIsOpen] = useState(false)
   const [fields, setFields] = useState<ContactFields>(emptyFields)
   const [status, setStatus] = useState<'idle' | 'sending' | 'success'>('idle')
   const [error, setError] = useState('')
-  const [copyStatus, setCopyStatus] = useState<'idle' | 'copied' | 'error'>('idle')
-  const [showCopyHint, setShowCopyHint] = useState(false)
   const modalRef = useRef<HTMLDivElement>(null)
   const nameInputRef = useRef<HTMLInputElement>(null)
-  const copyStatusTimerRef = useRef<number | undefined>(undefined)
   const titleId = useId()
   const descriptionId = useId()
-
-  useEffect(() => () => {
-    if (copyStatusTimerRef.current) window.clearTimeout(copyStatusTimerRef.current)
-  }, [])
 
   useEffect(() => {
     if (!isOpen) return
@@ -89,31 +95,7 @@ export function ContactForm() {
     setIsOpen(true)
   }
 
-  const copyEmail = async () => {
-    setShowCopyHint(false)
-
-    try {
-      if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText(contactEmail)
-      } else {
-        const textarea = document.createElement('textarea')
-        textarea.value = contactEmail
-        textarea.style.position = 'fixed'
-        textarea.style.opacity = '0'
-        document.body.appendChild(textarea)
-        textarea.select()
-        const copied = document.execCommand('copy')
-        textarea.remove()
-        if (!copied) throw new Error('Copy failed')
-      }
-      setCopyStatus('copied')
-    } catch {
-      setCopyStatus('error')
-    }
-
-    if (copyStatusTimerRef.current) window.clearTimeout(copyStatusTimerRef.current)
-    copyStatusTimerRef.current = window.setTimeout(() => setCopyStatus('idle'), 1_800)
-  }
+  useImperativeHandle(ref, () => ({ open: openModal }))
 
   const updateField = (field: keyof ContactFields, value: string) => {
     setFields((current) => ({ ...current, [field]: value }))
@@ -150,38 +132,11 @@ export function ContactForm() {
     <>
       <div className="contact-actions-line">
         I’m looking for product-engineering roles at ambitious early-stage startups in San Francisco,
-        starting autumn 2026.{' '}
-        If you think I could be useful to your team,{' '}
-        <span className="contact-copy-action">
-          <button
-            className="contact-inline-action"
-            type="button"
-            onMouseEnter={() => setShowCopyHint(true)}
-            onMouseLeave={() => setShowCopyHint(false)}
-            onFocus={() => setShowCopyHint(true)}
-            onBlur={() => setShowCopyHint(false)}
-            onClick={() => void copyEmail()}
-          >
-            email me
-          </button>
-          {(copyStatus !== 'idle' || showCopyHint) && (
-            <span
-              className="contact-copy-confirmation"
-              role={copyStatus === 'idle' ? undefined : 'status'}
-            >
-              {copyStatus === 'idle'
-                ? 'Copy email'
-                : copyStatus === 'copied'
-                  ? 'Email copied!'
-                  : 'Couldn’t copy email'}
-            </span>
-          )}
-        </span>{' '}
-        or send a message here.
+        starting autumn 2026.
       </div>
 
       <button className="contact-message-button" type="button" onClick={openModal}>
-        Send a message
+        Get in touch
       </button>
 
       {isOpen && (
@@ -211,9 +166,9 @@ export function ContactForm() {
 
             <h3 id={titleId}>Send me a message</h3>
             <p id={descriptionId} className="contact-modal__description">
-              This sends an email directly to{' '}
-              <a href={`mailto:${contactEmail}`}>{contactEmail}</a>.
-              I’ll reply to the email address you provide.
+              You can either email me at{' '}
+              <a href={`mailto:${contactEmail}`}>{contactEmail}</a>{' '}
+              or send a message directly here using the form below.
             </p>
 
             {status === 'success' ? (
@@ -287,4 +242,4 @@ export function ContactForm() {
       )}
     </>
   )
-}
+})
