@@ -93,7 +93,7 @@ button {
   left: -24px;
   display: grid;
   grid-template-columns: 0 minmax(0, 1fr);
-  width: min(467px, calc(100% - 40px));
+  width: min(600px, calc(100% - 40px));
   margin: 0 auto;
   padding: 148px 0 126px;
 }
@@ -993,7 +993,7 @@ h1 {
   z-index: 50;
   left: calc(50% - 24px);
   bottom: max(18px, env(safe-area-inset-bottom));
-  width: min(467px, calc(100% - 40px));
+  width: min(600px, calc(100% - 40px));
   transform: translateX(-50%);
 }
 
@@ -1429,7 +1429,7 @@ a:focus-visible {
 
   .page-frame {
     left: 0;
-    width: min(467px, calc(100% - 36px));
+    width: min(600px, calc(100% - 36px));
     padding-top: 48px;
     padding-bottom: 132px;
   }
@@ -1499,7 +1499,7 @@ a:focus-visible {
   .question-form-dock {
     left: 50%;
     bottom: max(14px, env(safe-area-inset-bottom));
-    width: min(467px, calc(100% - 24px));
+    width: min(600px, calc(100% - 24px));
     transform: translateX(-50%);
   }
 
