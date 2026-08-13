@@ -186,7 +186,7 @@ const education = [
     role: 'MSc Computing',
     date: '2025 – 2026',
     description:
-      'Learned CS fundamentals: programming, low-level systems, algorithms, networks, machine learning. Developed fluency in C++, JS, Python, PyTorch. Currently achieving First Class Honours (highest UK master’s classification).',
+      'Learned CS fundamentals: programming, low-level systems, algorithms, networks, machine learning. Developed fluency in C++, JS, Python, PyTorch. Currently on track for a Distinction.',
   },
   {
     title: 'London School of Economics',
