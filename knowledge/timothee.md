@@ -166,11 +166,11 @@ Tim is completing an MSc Computing at Imperial College London, graduating in Sep
 
 He particularly enjoyed programming and machine learning. The degree strengthened his ability to reason about technical systems and complements his existing founder, product, and commercial experience.
 
-### Research project: a semantic representation layer for autonomous testing agents
+### Research project: agent-testable graphical interfaces
 
-Tim's MSc thesis is titled “A Semantic Representation Layer for Autonomous Testing Agents.” It was conducted at Imperial College London with academic supervisor Dr Robert Chatley and industry collaborator Andrey Breslav, CEO of CodeSpeak. The full thesis is available at https://timissenmann.com/thesis/ and the PDF at https://timissenmann.com/thesis/semtag-thesis.pdf.
+Tim's MSc research project is titled “Generating Agent-Testable GUIs.” It is being conducted with CodeSpeak and Andrey Breslav, the creator of Kotlin.
 
-The thesis presents Semtag, a closed vocabulary of `data-semtag-*` attributes that describe the role, identity, state and target of elements in front-end source code. A runtime extractor turns these hints into compact semantic snapshots for an AI browser agent to use while testing web interfaces.
+The research asks how generated web interfaces can become faster, cheaper, and more reliable for AI browsing agents to test. Current browser agents often consume expensive screenshots or large representations of the page and can struggle with navigation controls, nested interfaces, and timing. Tim is exploring the injection of structured hints into generated interfaces so agents can understand page context and capabilities without repeatedly processing the full page.
 
 The work sits at the intersection of:
 
@@ -181,7 +181,7 @@ The work sits at the intersection of:
 - Developer tools.
 - Product quality and reliability.
 
-The evaluation covered 840 runs across 14 AI-generated applications and three models. Semantic snapshots averaged 69% smaller than accessibility snapshots. On Claude Sonnet 5 and Claude Opus 5, the hinted agent lowered per-run API cost by 15.9% and 12.6%, respectively, while precision, recall and F1 stayed within three points of the baseline and latency was unchanged. On Claude Haiku 4.5, there was no cost saving; F1 increased by ten points, but this difference was not statistically significant across the 14 applications. Results therefore depend on the model and should not be presented as a universal cost reduction.
+Success is evaluated through time, token consumption, and accuracy when agents execute test scenarios. Early results show 30% lower token use than conventional browser agents. The project is still in development, so this should be described as an early result rather than a final performance claim.
 
 ## Other projects and accomplishments
 
