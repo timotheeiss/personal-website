@@ -159,6 +159,7 @@ const projects = [
     ),
     technologies: ['Python', 'React', 'MCP', 'Agents SDK'],
     variant: 'agent' as const,
+    href: '/thesis.pdf',
     images: semtagImages,
   },
 ]
