@@ -137,14 +137,14 @@ const projects = [
     images: hivemindImages,
   },
   {
-    name: 'Generating Agent-Testable GUIs',
-    category: 'Research',
+    name: 'A Semantic Representation Layer for Autonomous Testing Agents',
+    category: 'MSc thesis',
     description: (
       <>
-        AI browser agents are increasingly used for application testing, but their heavy token use makes them
-        expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and
-        detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular
-        browser agents. The research is conducted with{' '}
+        For my master’s thesis at Imperial, I built Semtag, a semantic layer that helps AI agents test web
+        interfaces with more compact observations. Across 840 runs on 14 applications, it cut testing costs by
+        12.6–15.9% on two larger models while keeping defect detection within three points of the baseline.
+        The research was conducted with{' '}
         <a
           className="inline-project-link"
           href="https://codespeak.dev/"
@@ -154,11 +154,12 @@ const projects = [
         >
           CodeSpeak
         </a>{' '}
-        and Andrey Breslav, creator of Kotlin.
+        and Andrey Breslav. <a className="inline-project-link" href="/thesis/">Read the thesis</a>.
       </>
     ),
     technologies: ['Python', 'React', 'MCP', 'Agents SDK'],
     variant: 'agent' as const,
+    href: '/thesis/',
     images: semtagImages,
   },
 ]
