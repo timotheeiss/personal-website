@@ -280,11 +280,11 @@ export default function App() {
                 </a>
               </div>
             </div>
-            <p className="profile-subtitle">Product Engineer & Founder · Relocating to San Francisco</p>
+            <p className="profile-subtitle">Product Engineer & Founder</p>
             <p className="profile-introduction">
               I've shipped products from zero to 10k+ users, building end-to-end from design to engineering and
               growth. I’m graduating from my CS Master’s in
-              September 2026 and looking to join an early-stage startup in San Francisco from autumn 2026.{' '}
+              September 2026.{' '}
               <button
                 className="profile-contact-action"
                 type="button"
