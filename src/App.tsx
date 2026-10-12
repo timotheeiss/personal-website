@@ -92,7 +92,7 @@ const projects = [
         >
           Newgrain
         </a>{' '}to create a calmer, purpose-built community for film photographers. Over four years, I took it
-        from a no-code prototype to a native iOS app and web platform, owning product design, engineering,
+        from a prototype to a native iOS app and web platform, owning product design, engineering,
         growth, and monetization. I’ve grown it organically to 10k+ users, 45k+ posts, hundreds of paying
         subscribers, and{' '}
         <a
