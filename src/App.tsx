@@ -137,13 +137,13 @@ const projects = [
     images: hivemindImages,
   },
   {
-    name: 'Generating Agent-Testable GUIs',
+    name: 'Semtag',
     category: 'Research',
     description: (
       <>
         AI browser agents are increasingly used for application testing, but their heavy token use makes them
-        expensive. For my master’s thesis, I’m developing an end-to-end agent that tests graphical interfaces and
-        detects bugs by injecting semantic hints into the code. Early results show 30% lower token use than regular
+        expensive. For my master’s thesis, I’ve developed an end-to-end agent that tests graphical interfaces and
+        detects bugs by injecting semantic hints into the code. Benchmark results show up to 16% lower token use than regular
         browser agents. The research is conducted with{' '}
         <a
           className="inline-project-link"
@@ -283,8 +283,8 @@ export default function App() {
             <p className="profile-subtitle">Product Engineer & Founder · Relocating to San Francisco</p>
             <p className="profile-introduction">
               I've shipped products from zero to 10k+ users, building end-to-end from design to engineering and
-              growth. I’m graduating from my CS Master’s in
-              September 2026 and looking to join an early-stage startup in San Francisco from autumn 2026.{' '}
+              growth. I’ve graduated from my CS Master’s in
+              September 2026 and looking to join an early-stage startup in San Francisco.{' '}
               <button
                 className="profile-contact-action"
                 type="button"
