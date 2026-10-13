@@ -144,7 +144,7 @@ const projects = [
         AI browser agents are increasingly used for application testing, but their heavy token use makes them
         expensive. For my master’s thesis, I’ve developed an end-to-end agent that tests graphical interfaces and
         detects bugs by injecting semantic hints into the code. Benchmark results show up to 16% lower token use than regular
-        browser agents. The research is conducted with{' '}
+        browser agents. The research was conducted with{' '}
         <a
           className="inline-project-link"
           href="https://codespeak.dev/"
@@ -154,7 +154,17 @@ const projects = [
         >
           CodeSpeak
         </a>{' '}
-        and Andrey Breslav, creator of Kotlin.
+        and Andrey Breslav, creator of Kotlin.{' '}
+        <a
+          className="inline-project-link"
+          href="/thesis.pdf"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Read the thesis here (opens in a new tab)"
+        >
+          Read the thesis here
+        </a>
+        .
       </>
     ),
     technologies: ['Python', 'React', 'MCP', 'Agents SDK'],
